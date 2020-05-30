@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#879BCF</color>
+    <color name="colorPrimaryDark">#697eb0</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="black_transparent">#80000000</color>
+    <color name="blackType2_20">#33000000</color>
+    <color name="dark_blue">#3b5998</color>
+    <color name="light_blue">#39adda</color>
+    <color name="red">#dc4e41</color>
+    <color name="red1">#DB4B4F</color>
+    <color name="red2">#BE1A1A</color>
+    <color name="red3">#DA6F39</color>
+    <color name="red4">#CE4B4B</color>
+    <color name="green">#5eb04c</color>
+    <color name="red_background">#E62727</color>
+    <color name="green1">#48AE10</color>
+    <color name="green2">#1E9E4B</color>
+    <color name="green3">#2600854B</color>
+    <color name="green4">#0A6D3C</color>
+    <color name="blue">#65C7C3</color>
+    <color name="blue_1">#4065C7C3</color>
+    <color name="blue_2">#4367B2</color>
+    <color name="blue_3">#2170CF</color>
+    <color name="blue_4">#4B7FCE</color>
+    <color name="blue_5">#3347A0BF</color>
+    <color name="blue_6">#2665C7C3</color>
+    <color name="blue_7">#00457B</color>
+    <color name="blue_ukr">#21A7E9</color>
+    <color name="yellow_ukr">#FEEE24</color>
+    <color name="yellow_1">#F0D900</color>
+    <color name="greyType1">#bbbbbb</color>
+    <color name="greyType2">#d6d6d6</color>
+    <color name="greyType3">#e9e9ea</color>
+    <color name="greyType4">#BBBBBB</color>
+    <color name="greyType5">#F5F5F5</color>
+    <color name="greyType7">#EEEEEE</color>
+    <color name="greyType8">#F5F5F5</color>
+    <color name="greyType9">#FCFCFC</color>
+    <color name="greyType10">#4D4D4D</color>
+    <color name="greyType11">#DDDDDD</color>
+    <color name="greyType12">#F1F1F1</color>
+    <color name="greyType4_60">#F8BBBBBB</color>
+    <color name="blackType20">#33343137</color>
+    <color name="greyType13">#E2E2E2</color>
+    <color name="white_op_70">#B3FFFFFF</color>
+    <color name="whiteType2_15">#26FFFFFF</color>
+    <color name="violet">#826AF9</color>
+    <color name="orange">#FF6C40</color>
+    <color name="orangeType2_20">#33f88939</color>
+    <color name="orangeType3">#f88939</color>
+
+    <color name="text_greyType1">#808080</color>
+    <color name="text_greyType2">#8e8e93</color>
+    <color name="text_type_3">#3b3137</color>
+    <color name="text_blackType1">#343137</color>
+    <color name="text_type_3_50">#803b3137</color>
+    <color name="text_white_5">#F2FFFFFF</color>
+
+    <color name="background_color">#f7f7f7</color>
+    <color name="hint_color">#8e8e93</color>
+    <color name="line_color">#dddddd</color>
+
+    <color name="black40">#66000000</color>
+    <color name="white82">#D1FFFFFF</color>
+    <color name="white75">#BFFFFFFF</color>
+    <color name="white70">#B3FFFFFF</color>
+    <color name="text_blueType1">#007AFF</color>
+    <color name="green_button">#75CAC7</color>
+    <color name="pin_normal">#6B767E</color>
+</resources>
