@@ -75,5 +75,14 @@
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
 
-
+    <fragment
+        android:id="@+id/detail_lesson_fragment"
+        android:name="com.dyukov.dyuandrolearn.ui.lessonDetail.LessonDetailFragment"
+        android:label="DetailLesson"
+        tools:layout="@layout/fragment_lesson_detail" />
+    <fragment
+        android:id="@+id/tast_detail_fragment"
+        android:name="com.dyukov.dyuandrolearn.ui.taskDetail.TaskDetailFragment"
+        android:label="TaskDetail"
+        tools:layout="@layout/fragment_task_detail" />
 </navigation>

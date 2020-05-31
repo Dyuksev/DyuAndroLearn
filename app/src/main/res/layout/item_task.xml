@@ -8,6 +8,32 @@
     android:background="@drawable/ic_tast_blue">
 
     <ImageView
+        android:id="@+id/iv_experience"
+        android:layout_width="15dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/ic_experience_back"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tv_exp_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="20"
+        android:textColor="@color/white"
+        android:textSize="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_experience"
+        app:layout_constraintEnd_toEndOf="@+id/iv_experience"
+        app:layout_constraintStart_toStartOf="@+id/iv_experience"
+        app:layout_constraintTop_toTopOf="@+id/iv_experience" />
+
+    <ImageView
         android:id="@+id/iv_task_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -3,6 +3,7 @@ package com.dyukov.dyuandrolearn.ui.learn
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dyukov.dyuandrolearn.R
 import com.dyukov.dyuandrolearn.base.BaseFragment
@@ -27,7 +28,6 @@ class LearnFragment : BaseFragment<LearnViewModel, FragmentLoginBinding, LearnVi
     override fun viewModelClass(): Class<LearnViewModel> = LearnViewModel::class.java
 
     override fun viewModelFactory(): LearnViewModelFactory = LearnViewModelFactory()
-
 
     override fun layoutResId(): Int = R.layout.fragment_learn
 
@@ -91,7 +91,7 @@ class LearnFragment : BaseFragment<LearnViewModel, FragmentLoginBinding, LearnVi
         }
         lessonsListRvAdapter.setOnClickListener(object : LessonsListRvAdapter.OnItemClicked {
             override fun onItemClick(position: Int) {
-                Toast.makeText(requireContext(), "LOL", Toast.LENGTH_LONG).show()
+
             }
         })
     }
@@ -108,7 +108,7 @@ class LearnFragment : BaseFragment<LearnViewModel, FragmentLoginBinding, LearnVi
         }
         lessonsListRvAdapter.setOnClickListener(object : LessonsListRvAdapter.OnItemClicked {
             override fun onItemClick(position: Int) {
-                Toast.makeText(requireContext(), "LOL", Toast.LENGTH_LONG).show()
+                findNavController().navigate(R.id.detail_lesson_fragment)
             }
         })
     }

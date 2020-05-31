@@ -1,4 +1,4 @@
-package com.dyukov.dyuandrolearn.ui.home.adapter
+package com.dyukov.dyuandrolearn.ui.lessonDetail.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,15 +11,15 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dyukov.dyuandrolearn.R
 import com.dyukov.dyuandrolearn.data.network.TaskModel
+import com.dyukov.dyuandrolearn.extensions.gone
 import com.dyukov.dyuandrolearn.extensions.visible
-import com.dyukov.dyuandrolearn.utils.Constants.TYPE_TASK_MORE
-import com.dyukov.dyuandrolearn.utils.Constants.TYPE_TASK_PART_LESSON
-import com.dyukov.dyuandrolearn.utils.Constants.TYPE_TASK_PRACTICE
-import com.dyukov.dyuandrolearn.utils.Constants.TYPE_TASK_THEORY
+import com.dyukov.dyuandrolearn.ui.home.adapter.TaskListRvAdapter
+import com.dyukov.dyuandrolearn.utils.Constants
+import com.dyukov.dyuandrolearn.utils.Constants.TYPE_LESSON_BASIC
+import com.dyukov.dyuandrolearn.utils.Constants.TYPE_LESSON_INTRO
 
-
-class TaskListRvAdapter(context: Context) :
-    RecyclerView.Adapter<TaskListRvAdapter.TaskViewHolder>() {
+class TaskLessonRvAdapter(context: Context) :
+    RecyclerView.Adapter<TaskLessonRvAdapter.TaskViewHolder>() {
 
     var tasks: List<TaskModel>? = null
     private var context: Context = context
@@ -68,8 +68,7 @@ class TaskListRvAdapter(context: Context) :
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val taskModel = tasks?.get(position)
         when (taskModel?.taskType) {
-            TYPE_TASK_PART_LESSON -> {
-                holder.cl.setBackgroundResource(R.drawable.ic_tast_blue)
+            TYPE_LESSON_INTRO -> {
                 holder.taskImage.setImageDrawable(
                     ContextCompat.getDrawable(
                         context,
@@ -77,30 +76,11 @@ class TaskListRvAdapter(context: Context) :
                     )
                 )
             }
-            TYPE_TASK_THEORY -> {
-                holder.cl.setBackgroundResource(R.drawable.ic_tast_yellow)
+            TYPE_LESSON_BASIC -> {
                 holder.taskImage.setImageDrawable(
                     ContextCompat.getDrawable(
                         context,
                         R.drawable.ic_task_android
-                    )
-                )
-            }
-            TYPE_TASK_PRACTICE -> {
-                holder.cl.setBackgroundResource(R.drawable.ic_tast_red)
-                holder.taskImage.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        context,
-                        R.drawable.ic_quiz
-                    )
-                )
-            }
-            TYPE_TASK_MORE -> {
-                holder.cl.setBackgroundResource(R.drawable.ic_tast_grey)
-                holder.taskImage.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        context,
-                        R.drawable.ic_task_more
                     )
                 )
             }
@@ -117,6 +97,10 @@ class TaskListRvAdapter(context: Context) :
                 )
             )
 
+        } else {
+            holder.cl.setBackgroundResource(R.drawable.ic_tast_grey)
+            holder.ivExperience.gone()
+            holder.tvExpCount.gone()
         }
         holder.taskName.text = taskModel?.tastName
         holder.cl.setOnClickListener {
