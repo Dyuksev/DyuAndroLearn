@@ -2,9 +2,11 @@ package com.dyukov.dyuandrolearn
 
 import android.app.Application
 import com.dyukov.dyuandrolearn.data.db.DyuAndroDatabase
+import com.dyukov.dyuandrolearn.di.firebaseModule
 import com.dyukov.dyuandrolearn.ui.login.LoginViewModelFactory
 import com.dyukov.dyuandrolearn.ui.main.MainViewModelFactory
 import com.dyukov.dyuandrolearn.ui.registration.RegistrationViewModelFactory
+import com.google.firebase.auth.FirebaseAuth
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -21,5 +23,6 @@ class DyuApp : Application(), KodeinAware {
         bind() from provider { MainViewModelFactory(instance()) }
         bind() from provider { LoginViewModelFactory() }
         bind() from provider { RegistrationViewModelFactory() }
+        import(firebaseModule)
     }
 }
