@@ -7,8 +7,15 @@
     <string name="home">Home</string>
     <string name="profile">profile</string>
     <string name="learning">learning</string>
+    <string name="learning_title">Learning</string>
     <string name="hello">hey</string>
     <string name="your_progress">Your progress</string>
     <string name="recommended_tasks">Recommended tasks</string>
     <string name="recommended_tasks_hint">We are recommend to start with it</string>
+    <string name="tv_lessons">Lessons</string>
+    <string name="tv_lessons_hint">We suggest starting with these lessons</string>
+    <string name="tv_theory">Theory</string>
+    <string name="tv_theory_hint">This section contains the whole theory that you learn in the lessons.</string>
+    <string name="tv_practice">Practice</string>
+    <string name="tv_practice_hint">Strengthen your knowledge by doing these exercises</string>
 </resources>

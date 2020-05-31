@@ -3,6 +3,7 @@ package com.dyukov.dyuandrolearn
 import android.app.Application
 import com.dyukov.dyuandrolearn.data.db.DyuAndroDatabase
 import com.dyukov.dyuandrolearn.data.db.LessonsRepository
+import com.dyukov.dyuandrolearn.data.network.UserModel
 import com.dyukov.dyuandrolearn.di.firebaseModule
 import com.dyukov.dyuandrolearn.ui.login.LoginViewModelFactory
 import com.dyukov.dyuandrolearn.ui.MainViewModelFactory
@@ -23,11 +24,10 @@ class DyuApp : Application(), KodeinAware {
 
         bind() from singleton { DyuAndroDatabase(instance()) }
         bind() from singleton { LessonsRepository(instance()) }
-        bind() from provider {
-            MainViewModelFactory(
-                instance()
-            )
-        }
+        bind() from singleton { UserModel() }
+
+
+        bind() from provider { MainViewModelFactory(instance()) }
         bind() from provider { LoginViewModelFactory() }
         bind() from provider { RegistrationViewModelFactory() }
         bind() from provider { IntroViewModelFactory() }

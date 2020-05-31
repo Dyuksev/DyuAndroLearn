@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.dyukov.dyuandrolearn.R
 import com.dyukov.dyuandrolearn.base.BaseFragment
-import com.dyukov.dyuandrolearn.data.db.network.UserModel
+import com.dyukov.dyuandrolearn.data.network.UserModel
 import com.dyukov.dyuandrolearn.databinding.FragmentLoginBinding
 import com.dyukov.dyuandrolearn.ui.MainActivity
 import com.dyukov.dyuandrolearn.utils.Utils
@@ -28,10 +28,10 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding, LoginVi
     override fun layoutResId(): Int = R.layout.fragment_login
     override fun viewModelClass(): Class<LoginViewModel> = LoginViewModel::class.java
     override fun viewModelFactory(): LoginViewModelFactory = LoginViewModelFactory()
-    val mAuth: FirebaseAuth by instance<FirebaseAuth>()
     private val mDatabaseReference: DatabaseReference? by instance<DatabaseReference>()
     private val mDatabase: FirebaseDatabase? by instance<FirebaseDatabase>()
 
+    val userModel: UserModel by instance<UserModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,19 +40,7 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding, LoginVi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-        mAuth.currentUser?.let {
 
-            mDatabaseReference?.child(it.uid)?.addValueEventListener(object : ValueEventListener {
-                override fun onCancelled(p0: DatabaseError) {
-                }
-
-                override fun onDataChange(p0: DataSnapshot) {
-                    val user: UserModel? = p0.getValue(UserModel::class.java)
-
-                }
-            })
-
-        }
     }
 
     override fun onResume() {

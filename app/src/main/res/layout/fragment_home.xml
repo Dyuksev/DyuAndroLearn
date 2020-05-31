@@ -16,21 +16,14 @@
         android:layout_height="match_parent"
         android:background="@color/home_background">
 
-        <View
-            android:id="@+id/status_bar"
-            android:layout_width="match_parent"
-            android:layout_height="24dp"
-            android:background="?attr/colorPrimary"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="75dp"
             android:background="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/status_bar">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/tv_hello"
@@ -54,7 +47,6 @@
                 android:layout_marginBottom="15dp"
                 android:fontFamily="@font/roboto_medium"
                 android:singleLine="true"
-                android:text="Dyuksev"
                 android:textColor="@color/white"
                 android:textSize="19sp"
                 app:layout_constraintBottom_toBottomOf="parent"

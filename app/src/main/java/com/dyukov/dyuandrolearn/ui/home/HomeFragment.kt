@@ -6,13 +6,21 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dyukov.dyuandrolearn.R
 import com.dyukov.dyuandrolearn.base.BaseFragment
-import com.dyukov.dyuandrolearn.data.db.network.TaskModel
+import com.dyukov.dyuandrolearn.data.network.TaskModel
+import com.dyukov.dyuandrolearn.data.network.UserModel
 import com.dyukov.dyuandrolearn.databinding.FragmentHomeBinding
 import com.dyukov.dyuandrolearn.extensions.toPx
 import com.dyukov.dyuandrolearn.ui.MainActivity
 import com.dyukov.dyuandrolearn.ui.home.adapter.HorizontalSpaceMarginItemDecoration
 import com.dyukov.dyuandrolearn.ui.home.adapter.TaskListRvAdapter
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.tv_name
+import kotlinx.android.synthetic.main.fragment_learn.*
+import org.kodein.di.generic.instance
 
 class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeViewModelFactory>() {
 
@@ -22,18 +30,39 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeViewMo
 
     override fun viewModelFactory(): HomeViewModelFactory = HomeViewModelFactory()
 
+    private val mDatabaseReference: DatabaseReference? by instance<DatabaseReference>()
+
     override fun layoutResId(): Int = R.layout.fragment_home
+
+    val userModel: UserModel by instance<UserModel>()
 
     override fun onResume() {
         super.onResume()
         (activity as MainActivity).setNavBarVisibility(true)
+    }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mAuth.currentUser?.let {
+            mDatabaseReference?.child(it.uid)?.addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+                }
 
+                override fun onDataChange(p0: DataSnapshot) {
+                    val user: UserModel? = p0.getValue(UserModel::class.java)
+                    userModel.email = user?.email.orEmpty()
+                    userModel.username = user?.username.orEmpty()
+                    mDatabaseReference?.child(it.uid)?.removeEventListener(this);
+                }
+            })
+
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRvAdapter()
+        tv_name.setText(userModel.username)
 
         initTestData()
     }

@@ -10,9 +10,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dyukov.dyuandrolearn.R
-import com.dyukov.dyuandrolearn.data.db.network.TaskModel
-import com.dyukov.dyuandrolearn.utils.Constants.TYPE_TASK_INTRO
+import com.dyukov.dyuandrolearn.data.network.TaskModel
 import com.dyukov.dyuandrolearn.utils.Constants.TYPE_TASK_MORE
+import com.dyukov.dyuandrolearn.utils.Constants.TYPE_TASK_PART_LESSON
 import com.dyukov.dyuandrolearn.utils.Constants.TYPE_TASK_PRACTICE
 import com.dyukov.dyuandrolearn.utils.Constants.TYPE_TASK_THEORY
 
@@ -21,7 +21,7 @@ class TaskListRvAdapter(context: Context) :
     RecyclerView.Adapter<TaskListRvAdapter.TaskViewHolder>() {
 
     var tasks: List<TaskModel>? = null
-    var context: Context = context
+    private var context: Context = context
 
     fun setItems(tasks: List<TaskModel>?) {
         this.tasks = tasks
@@ -63,7 +63,7 @@ class TaskListRvAdapter(context: Context) :
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val taskModel = tasks?.get(position)
         when (taskModel?.taskType) {
-            TYPE_TASK_INTRO -> {
+            TYPE_TASK_PART_LESSON -> {
                 holder.cl.setBackgroundResource(R.drawable.ic_tast_blue)
                 holder.taskImage.setImageDrawable(
                     ContextCompat.getDrawable(
@@ -81,7 +81,15 @@ class TaskListRvAdapter(context: Context) :
                     )
                 )
             }
-            TYPE_TASK_PRACTICE -> holder.cl.setBackgroundResource(R.drawable.ic_tast_red)
+            TYPE_TASK_PRACTICE -> {
+                holder.cl.setBackgroundResource(R.drawable.ic_tast_red)
+                holder.taskImage.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        context,
+                        R.drawable.ic_quiz
+                    )
+                )
+            }
             TYPE_TASK_MORE -> {
                 holder.cl.setBackgroundResource(R.drawable.ic_tast_grey)
                 holder.taskImage.setImageDrawable(

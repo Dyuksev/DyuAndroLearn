@@ -49,6 +49,25 @@
         android:name="com.dyukov.dyuandrolearn.ui.home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
-
+        <action
+            android:id="@+id/action_home_to_learn"
+            app:destination="@+id/learn_fragment"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
+
+
+    <fragment
+        android:id="@+id/learn_fragment"
+        android:name="com.dyukov.dyuandrolearn.ui.learn.LearnFragment"
+        android:label="Learn"
+        tools:layout="@layout/fragment_learn">
+        <action
+            android:id="@+id/action_learn_to_home"
+            app:destination="@+id/home_fragment"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+
 </navigation>

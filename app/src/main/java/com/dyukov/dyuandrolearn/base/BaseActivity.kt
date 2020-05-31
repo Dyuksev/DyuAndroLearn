@@ -6,14 +6,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.auth.FirebaseAuth
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
+import org.kodein.di.generic.instance
 
 abstract class BaseActivity<V : BaseViewModel, B : ViewDataBinding, T : ViewModelProvider.NewInstanceFactory> :
     AppCompatActivity(), KodeinAware {
 
     override val kodein by kodein()
 
+    protected val mAuth: FirebaseAuth by instance<FirebaseAuth>()
     protected abstract fun viewModelClass(): Class<V>
 
     protected abstract fun viewModelFactory(): T

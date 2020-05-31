@@ -1,4 +1,4 @@
-package com.dyukov.dyuandrolearn.data.db.network
+package com.dyukov.dyuandrolearn.data.network
 
 class UserModel {
     var email: String = ""

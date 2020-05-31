@@ -32,7 +32,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding, MainViewMo
 
     override fun layoutResId(): Int = R.layout.activity_main
     lateinit var navController: NavController
-    val mAuth: FirebaseAuth by instance<FirebaseAuth>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +52,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding, MainViewMo
             }
 
             R.id.action_lessons -> {
-                navController.navigate(R.id.registration_fragment)
+                navController.navigate(R.id.learn_fragment)
                 return true
             }
 

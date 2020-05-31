@@ -11,13 +11,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.dyukov.dyuandrolearn.BR
 import com.dyukov.dyuandrolearn.ui.MainActivity
+import com.google.firebase.auth.FirebaseAuth
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
+import org.kodein.di.generic.instance
 
 abstract class BaseFragment<V : BaseViewModel, B : ViewDataBinding, T : ViewModelProvider.NewInstanceFactory>
     : Fragment(), KodeinAware {
 
     override val kodein by kodein()
+    val mAuth: FirebaseAuth by instance<FirebaseAuth>()
 
     protected abstract fun viewModelClass(): Class<V>
 
