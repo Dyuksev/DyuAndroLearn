@@ -5,6 +5,7 @@
     <color name="colorAccent">#D15641</color>
 
     <color name="white">#FFFFFF</color>
+    <color name="home_background">#F7F7F7</color>
     <color name="black">#000000</color>
     <color name="black_transparent">#80000000</color>
     <color name="blackType2_20">#33000000</color>
@@ -36,13 +37,8 @@
     <color name="greyType2">#d6d6d6</color>
     <color name="greyType3">#e9e9ea</color>
     <color name="greyType4">#BBBBBB</color>
-    <color name="greyType5">#F5F5F5</color>
-    <color name="greyType7">#EEEEEE</color>
-    <color name="greyType8">#F5F5F5</color>
-    <color name="greyType9">#FCFCFC</color>
-    <color name="greyType10">#4D4D4D</color>
-    <color name="greyType11">#DDDDDD</color>
-    <color name="greyType12">#F1F1F1</color>
+    <color name="greyType5">#D8D8D8</color>
+
     <color name="greyType4_60">#F8BBBBBB</color>
     <color name="blackType20">#33343137</color>
     <color name="greyType13">#E2E2E2</color>

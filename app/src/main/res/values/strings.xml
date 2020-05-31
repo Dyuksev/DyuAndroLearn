@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">DyuAndroLearn</string>
+    <string name="step_one_text">Welcome to the world of Android development! Are you ready to learn this fascinating and interesting world? </string>
+    <string name="step_two_text">It has never been so fun and interesting to study programming as playing.We worked out a system of exercises so that you do not get bored for a minute and enjoy the learning process</string>
+    <string name="step_three_text">For each task you complete, you get experience points and increase your level! Good luck!</string>
+    <string name="step_four_text"> </string>
+    <string name="home">Home</string>
+    <string name="profile">profile</string>
+    <string name="learning">learning</string>
+    <string name="hello">hey</string>
+    <string name="your_progress">Your progress</string>
+    <string name="recommended_tasks">Recommended tasks</string>
+    <string name="recommended_tasks_hint">We are recommend to start with it</string>
 </resources>

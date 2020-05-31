@@ -10,10 +10,9 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.dyukov.dyuandrolearn.BR
-import com.dyukov.dyuandrolearn.ui.main.MainActivity
+import com.dyukov.dyuandrolearn.ui.MainActivity
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
-import org.kodein.di.generic.instance
 
 abstract class BaseFragment<V : BaseViewModel, B : ViewDataBinding, T : ViewModelProvider.NewInstanceFactory>
     : Fragment(), KodeinAware {

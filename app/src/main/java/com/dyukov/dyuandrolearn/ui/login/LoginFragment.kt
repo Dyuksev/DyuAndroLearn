@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -13,6 +12,7 @@ import com.dyukov.dyuandrolearn.R
 import com.dyukov.dyuandrolearn.base.BaseFragment
 import com.dyukov.dyuandrolearn.data.db.network.UserModel
 import com.dyukov.dyuandrolearn.databinding.FragmentLoginBinding
+import com.dyukov.dyuandrolearn.ui.MainActivity
 import com.dyukov.dyuandrolearn.utils.Utils
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
-import timber.log.Timber
 
 
 class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding, LoginViewModelFactory>() {
@@ -56,6 +55,11 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding, LoginVi
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).setNavBarVisibility(false)
+    }
+
     private fun initView() {
         tv_sign_up.setOnClickListener {
             Utils.hideKeyboard(it)
@@ -73,7 +77,7 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding, LoginVi
 
     }
 
-    fun SignIn() {
+    private fun SignIn() {
         showProgress()
         GlobalScope.launch {
             mAuth.signInWithEmailAndPassword(
@@ -81,7 +85,7 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding, LoginVi
                 viewModel.etPassword.value.toString()
             ).addOnCompleteListener(requireActivity(), OnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    checkisLogginOn()
+                    checkIsLogginOn()
                     hideProgress()
                 } else {
                     hideProgress()
@@ -91,11 +95,12 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding, LoginVi
         }
     }
 
-    fun checkisLogginOn() {
-
+    private fun checkIsLogginOn() {
+        if (mAuth.currentUser != null)
+            findNavController().navigate(R.id.action_to_intro_screen)
     }
 
-    fun sendPasswordResetToEmail(email: String) {
+    private fun sendPasswordResetToEmail(email: String) {
         showProgress()
         mAuth.sendPasswordResetEmail(email)
             .addOnCompleteListener(requireActivity(), OnCompleteListener { task ->

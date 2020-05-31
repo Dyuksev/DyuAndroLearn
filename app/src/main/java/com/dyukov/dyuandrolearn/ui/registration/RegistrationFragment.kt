@@ -7,6 +7,7 @@ import com.dyukov.dyuandrolearn.R
 import com.dyukov.dyuandrolearn.base.BaseFragment
 import com.dyukov.dyuandrolearn.data.db.network.UserModel
 import com.dyukov.dyuandrolearn.databinding.FragmentRegisterBinding
+import com.dyukov.dyuandrolearn.ui.MainActivity
 import com.dyukov.dyuandrolearn.utils.Utils
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
