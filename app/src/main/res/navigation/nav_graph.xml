@@ -69,5 +69,11 @@
             app:popUpToInclusive="true" />
     </fragment>
 
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="com.dyukov.dyuandrolearn.ui.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+
 
 </navigation>

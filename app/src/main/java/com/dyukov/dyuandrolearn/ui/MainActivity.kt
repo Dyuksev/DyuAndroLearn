@@ -57,7 +57,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding, MainViewMo
             }
 
             R.id.action_profile -> {
-                navController.navigate(R.id.registration_fragment)
+                navController.navigate(R.id.profile_fragment)
                 return true
             }
 

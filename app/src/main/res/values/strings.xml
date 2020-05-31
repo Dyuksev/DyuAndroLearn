@@ -5,17 +5,24 @@
     <string name="step_three_text">For each task you complete, you get experience points and increase your level! Good luck!</string>
     <string name="step_four_text"> </string>
     <string name="home">Home</string>
-    <string name="profile">profile</string>
-    <string name="learning">learning</string>
+    <string name="profile">Profile</string>
+    <string name="learning">Learning</string>
     <string name="learning_title">Learning</string>
     <string name="hello">hey</string>
     <string name="your_progress">Your progress</string>
     <string name="recommended_tasks">Recommended tasks</string>
     <string name="recommended_tasks_hint">We are recommend to start with it</string>
+
     <string name="tv_lessons">Lessons</string>
     <string name="tv_lessons_hint">We suggest starting with these lessons</string>
+
     <string name="tv_theory">Theory</string>
     <string name="tv_theory_hint">This section contains the whole theory that you learn in the lessons.</string>
+
     <string name="tv_practice">Practice</string>
     <string name="tv_practice_hint">Strengthen your knowledge by doing these exercises</string>
+
+    <string name="tv_my_profile">My profile</string>
+    <string name="tv_settings">Settings</string>
+    <string name="tv_help">Help</string>
 </resources>
