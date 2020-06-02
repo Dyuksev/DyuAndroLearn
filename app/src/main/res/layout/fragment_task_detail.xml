@@ -14,7 +14,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/home_background">
+        android:background="@color/home_background"
+        app:visibility="@{viewModel.isDataInit()}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_title"
@@ -42,7 +43,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/roboto_medium"
                 android:singleLine="true"
-                android:text="Introduction"
+                android:text="@{viewModel.task.name}"
                 android:textColor="@color/text_blackType1"
                 android:textSize="19sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -79,6 +80,8 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingBottom="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cl_title">
@@ -95,7 +98,7 @@
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/roboto_medium"
                     android:letterSpacing="0.02619"
-                    android:text="View"
+                    android:text="@{viewModel.task.name}"
                     android:textColor="@color/text_blackType1"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -135,65 +138,65 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/separator"
-                    tools:text="This class represents the basic building block for user interface components.
-A View occupies a rectangular area on the screen and is responsible for drawing and event handling. View is the base class for widgets, which are used to create interactive UI components (buttons, text fields, etc.). The ViewGroup subclass is the base class for layouts, which are invisible containers that hold other Views (or other ViewGroups) and define their layout properties." />
+                    tools:text="text" />
 
-                <TextView
-                    android:id="@+id/tv_task_samples"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/roboto_medium"
-                    android:letterSpacing="0.02619"
-                    android:text="Samples"
-                    android:textColor="@color/text_blackType1"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_main_text" />
+                <!--                <TextView-->
+                <!--                    android:id="@+id/tv_task_samples"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="24dp"-->
+                <!--                    android:layout_marginTop="20dp"-->
+                <!--                    android:fontFamily="@font/roboto_medium"-->
+                <!--                    android:letterSpacing="0.02619"-->
+                <!--                    android:text="Samples"-->
+                <!--                    android:textColor="@color/text_blackType1"-->
+                <!--                    android:textSize="16sp"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@+id/tv_main_text" />-->
 
 
-                <View
-                    android:id="@+id/separator1"
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp"
-                    android:background="#15B790"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_task_samples" />
+                <!--                <View-->
+                <!--                    android:id="@+id/separator1"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="3dp"-->
+                <!--                    android:layout_marginStart="24dp"-->
+                <!--                    android:layout_marginEnd="24dp"-->
+                <!--                    android:background="#15B790"-->
+                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@id/tv_task_samples" />-->
 
-                <TextView
-                    android:id="@+id/tv_samples"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:paddingStart="24dp"
-                    android:paddingEnd="24dp"
-                    android:text="sss ss s s s s s"
-                    android:textColor="@color/text_blackType1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/separator1" />
+                <!--                <TextView-->
+                <!--                    android:id="@+id/tv_samples"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="20dp"-->
+                <!--                    android:paddingStart="24dp"-->
+                <!--                    android:paddingEnd="24dp"-->
+                <!--                    android:text="sss ss s s s s s"-->
+                <!--                    android:textColor="@color/text_blackType1"-->
+                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toTopOf="@id/separator1" />-->
 
                 <Button
-                    android:id="@+id/bt_sign_in"
+                    android:id="@+id/bt_done"
                     android:layout_width="150dp"
                     android:layout_height="42dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginBottom="30dp"
                     android:background="@drawable/ic_button_red"
-                    android:text="Next"
+                    android:text="Got that"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_samples"
-                    app:layout_constraintVertical_bias="1" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_main_text"
+                    app:layout_constraintVertical_bias="1"
+                    app:visibility="@{!viewModel.isFromRecommend &amp;&amp; !viewModel.task.done}" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 

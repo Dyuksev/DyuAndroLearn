@@ -1,12 +1,11 @@
 package com.dyukov.dyuandrolearn.data.network
 
-
 data class TaskModel(
-    var taskType: Int? = null,
     var id: Int? = null,
-    var tastName: String? = null,
-    var taskDescription: String? = null,
-    var content: String? = null,
-    var isCompleted: Boolean = false,
+    var type: Int? = null,
+    var name: String? = null,
+    var composition: String? = null,
+    var done: Boolean = false,
+    var suggested: Boolean = false,
     var points: Int? = null
 )

@@ -53,10 +53,11 @@ class RegistrationFragment :
     fun createUser() {
         showProgress()
         val email = viewModel.etEmail.value.toString()
-        val username = viewModel.etPassword.value.toString()
+        val password = viewModel.etPassword.value.toString()
+        val username = viewModel.etUsername.value.toString()
         GlobalScope.launch {
             mAuth.createUserWithEmailAndPassword(
-                email, username
+                email, password
             ).addOnCompleteListener(requireActivity(), OnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val user = mAuth.currentUser
@@ -75,6 +76,8 @@ class RegistrationFragment :
         val userModel = UserModel()
         userModel.email = email
         userModel.username = username
+        userModel.level = 1
+        userModel.progress = 0
         mDatabaseReference?.child(uId)?.setValue(userModel)
         hideProgress()
         Toast.makeText(context, "Successfully Registered", Toast.LENGTH_LONG)

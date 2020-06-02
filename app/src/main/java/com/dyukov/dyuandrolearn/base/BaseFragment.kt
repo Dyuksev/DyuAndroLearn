@@ -10,6 +10,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.dyukov.dyuandrolearn.BR
+import com.dyukov.dyuandrolearn.data.db.LessonsRepository
 import com.dyukov.dyuandrolearn.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import org.kodein.di.KodeinAware
@@ -20,6 +21,7 @@ abstract class BaseFragment<V : BaseViewModel, B : ViewDataBinding, T : ViewMode
     : Fragment(), KodeinAware {
 
     override val kodein by kodein()
+
     val mAuth: FirebaseAuth by instance<FirebaseAuth>()
 
     protected abstract fun viewModelClass(): Class<V>
@@ -29,6 +31,9 @@ abstract class BaseFragment<V : BaseViewModel, B : ViewDataBinding, T : ViewMode
     protected lateinit var viewModel: V
     protected lateinit var binding: B
     protected lateinit var factory: T
+
+    protected val lessonsRepository by instance<LessonsRepository>()
+
 
     @LayoutRes
     protected abstract fun layoutResId(): Int

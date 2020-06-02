@@ -85,7 +85,7 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding, LoginVi
 
     private fun checkIsLogginOn() {
         if (mAuth.currentUser != null)
-            findNavController().navigate(R.id.action_to_intro_screen)
+            findNavController().navigate(R.id.action_login_to_intro_screen)
     }
 
     private fun sendPasswordResetToEmail(email: String) {

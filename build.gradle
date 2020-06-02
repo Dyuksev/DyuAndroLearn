@@ -53,6 +53,7 @@ ext {
     roomVersion = '2.2.2'
     timberVersion = '4.7.1'
     kodein_version = '6.2.1'
+    picasso = '2.71828'
 }
 
 task clean(type: Delete) {

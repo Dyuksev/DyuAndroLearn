@@ -1,11 +1,20 @@
 package com.dyukov.dyuandrolearn.ui.home
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dyukov.dyuandrolearn.R
 import com.dyukov.dyuandrolearn.base.BaseFragment
+import com.dyukov.dyuandrolearn.data.db.LessonsRepository
+import com.dyukov.dyuandrolearn.data.db.model.Task
+import com.dyukov.dyuandrolearn.data.db.model.User
+import com.dyukov.dyuandrolearn.data.network.LessonModel
 import com.dyukov.dyuandrolearn.data.network.TaskModel
 import com.dyukov.dyuandrolearn.data.network.UserModel
 import com.dyukov.dyuandrolearn.databinding.FragmentHomeBinding
@@ -13,14 +22,15 @@ import com.dyukov.dyuandrolearn.extensions.toPx
 import com.dyukov.dyuandrolearn.ui.MainActivity
 import com.dyukov.dyuandrolearn.ui.home.adapter.HorizontalSpaceMarginItemDecoration
 import com.dyukov.dyuandrolearn.ui.home.adapter.TaskListRvAdapter
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
+import com.dyukov.dyuandrolearn.utils.Constants
+import com.dyukov.dyuandrolearn.utils.PreferenceStorage
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_home.tv_name
-import kotlinx.android.synthetic.main.fragment_learn.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
+
 
 class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeViewModelFactory>() {
 
@@ -28,50 +38,54 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeViewMo
 
     override fun viewModelClass(): Class<HomeViewModel> = HomeViewModel::class.java
 
-    override fun viewModelFactory(): HomeViewModelFactory = HomeViewModelFactory()
+    override fun viewModelFactory(): HomeViewModelFactory = HomeViewModelFactory(lessonsRepository)
 
     private val mDatabaseReference: DatabaseReference? by instance<DatabaseReference>()
+    private val preferenceStorage: PreferenceStorage? by instance<PreferenceStorage>()
 
     override fun layoutResId(): Int = R.layout.fragment_home
 
-    val userModel: UserModel by instance<UserModel>()
+    private val userModel by instance<UserModel>()
 
     override fun onResume() {
         super.onResume()
         (activity as MainActivity).setNavBarVisibility(true)
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mAuth.currentUser?.let {
-            mDatabaseReference?.child(it.uid)?.addValueEventListener(object : ValueEventListener {
-                override fun onCancelled(p0: DatabaseError) {
-                }
-
-                override fun onDataChange(p0: DataSnapshot) {
-                    val user: UserModel? = p0.getValue(UserModel::class.java)
-                    userModel.email = user?.email.orEmpty()
-                    userModel.username = user?.username.orEmpty()
-                    mDatabaseReference?.child(it.uid)?.removeEventListener(this);
-                }
-            })
-
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRvAdapter()
-        tv_name.setText(userModel.username)
 
-        initTestData()
+        viewModel.getUserModel()
+        viewModel.getSuggestedTasks()
+        viewModel.taskFromDb.observe(viewLifecycleOwner, Observer {
+            if (!it.isNullOrEmpty()) {
+                taskListRvAdapter.setItems(it)
+                taskListRvAdapter.notifyDataSetChanged()
+            }
+        })
+        viewModel.user.observe(viewLifecycleOwner, Observer {
+            if (it != null) {
+                setUserData(it)
+            }
+        })
     }
 
-    fun initTestData() {
-        val tast1 = TaskModel(1, 1, "Introduction", "Desc")
-        val tast2 = TaskModel(2, 1, "View", "Desc")
-        val tast3 = TaskModel(4, 1, "More", "Desc")
-        taskListRvAdapter.setItems(listOf(tast1, tast2, tast3))
+
+    fun setUserData(user: User) {
+        tv_name.text = user.name
+        viewModel.progresString.value =
+            getString(R.string.points_count, user.progress.toString())
+        viewModel.points.value = user.level.toString()
+        ObjectAnimator.ofInt(level_bar, "progress", user.progress)
+            .setDuration(300)
+            .start()
+
     }
 
     fun initRvAdapter() {
@@ -84,9 +98,13 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeViewMo
             layoutManager = linearLayoutManager
             adapter = taskListRvAdapter
         }
+
         taskListRvAdapter.setOnClickListener(object : TaskListRvAdapter.OnItemClicked {
-            override fun onItemClick(position: Int) {
-                Toast.makeText(requireContext(), "LOL", Toast.LENGTH_LONG).show()
+            override fun onItemClick(position: Int, task: Task) {
+                val bundle = Bundle()
+                bundle.putInt(Constants.KEY_ID_TASK, task.id!!)
+                bundle.putBoolean(Constants.FROM_RECOMMENDED, true)
+                findNavController().navigate(R.id.tast_detail_fragment, bundle)
             }
         })
     }

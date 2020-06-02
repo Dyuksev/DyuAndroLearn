@@ -6,17 +6,20 @@
         android:enabled="true"
         android:icon="@drawable/ic_home_grey"
         android:title="@string/home"
+        android:menuCategory="secondary"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_lessons"
         android:enabled="true"
         android:icon="@drawable/ic_learning_grey"
         android:title="@string/learning"
+        android:menuCategory="secondary"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_profile"
         android:enabled="true"
         android:icon="@drawable/ic_profile_grey"
         android:title="@string/profile"
+        android:menuCategory="secondary"
         app:showAsAction="ifRoom" />
 </menu>

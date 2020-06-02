@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="1"
+                    android:text="@{viewModel.points}"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -129,7 +129,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/roboto"
-            android:text="@string/tv_lessons_hint"
+            android:text="@string/tv_theory_hint"
             android:textColor="@color/text_greyType1"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -151,47 +151,47 @@
             app:layout_constraintVertical_bias="0.0"
             tools:listitem="@layout/item_task" />
 
-        <TextView
-            android:id="@+id/tv_practice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/tv_practice"
-            android:textColor="@color/text_blackType1"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rv_tasks" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_practice"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="24dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:fontFamily="@font/roboto_medium"-->
+<!--            android:text="@string/tv_practice"-->
+<!--            android:textColor="@color/text_blackType1"-->
+<!--            android:textSize="16sp"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/rv_tasks" />-->
 
-        <TextView
-            android:id="@+id/tv_practice_hint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/roboto"
-            android:text="@string/tv_practice_hint"
-            android:textColor="@color/text_greyType1"
-            android:textSize="13sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_practice" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_practice_hint"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="24dp"-->
+<!--            android:layout_marginTop="4dp"-->
+<!--            android:fontFamily="@font/roboto"-->
+<!--            android:text="@string/tv_practice_hint"-->
+<!--            android:textColor="@color/text_greyType1"-->
+<!--            android:textSize="13sp"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/tv_practice" />-->
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_practice"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="16dp"
-            android:nestedScrollingEnabled="false"
-            android:orientation="horizontal"
-            android:overScrollMode="never"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_practice_hint"
-            app:layout_constraintVertical_bias="0.0"
-            tools:listitem="@layout/item_task" />
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/rv_practice"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="18dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:nestedScrollingEnabled="false"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:overScrollMode="never"-->
+<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/tv_practice_hint"-->
+<!--            app:layout_constraintVertical_bias="0.0"-->
+<!--            tools:listitem="@layout/item_task" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

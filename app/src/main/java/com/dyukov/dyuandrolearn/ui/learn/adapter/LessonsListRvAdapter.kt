@@ -10,18 +10,19 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dyukov.dyuandrolearn.R
+import com.dyukov.dyuandrolearn.data.db.model.Lesson
 import com.dyukov.dyuandrolearn.data.network.LessonModel
 import com.dyukov.dyuandrolearn.utils.Constants.TYPE_LESSON_BASIC
 import com.dyukov.dyuandrolearn.utils.Constants.TYPE_LESSON_INTRO
 
-class LessonsListRvAdapter(context: Context) :
+class LessonsListRvAdapter(private var context: Context) :
     RecyclerView.Adapter<LessonsListRvAdapter.LessonVieHolder>() {
 
-    var tasks: List<LessonModel>? = null
-    private var context: Context = context
+    var lessons: List<Lesson>? = null
 
-    fun setItems(tasks: List<LessonModel>?) {
-        this.tasks = tasks
+    fun setItems(lessons: List<Lesson>?) {
+        this.lessons = lessons
+        notifyDataSetChanged()
     }
 
     private var onClickListener: OnItemClicked? = null
@@ -31,7 +32,7 @@ class LessonsListRvAdapter(context: Context) :
     }
 
     interface OnItemClicked {
-        fun onItemClick(position: Int)
+        fun onItemClick(position: Int, lesson: Lesson)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): LessonVieHolder {
@@ -45,22 +46,24 @@ class LessonsListRvAdapter(context: Context) :
         var cl: ConstraintLayout
         var lessonName: TextView
         var taskImage: ImageView
+        var ivExperience: ImageView
         var expCount: TextView
 
         init {
             cl = itemView.findViewById(R.id.cl_task)
             taskImage = itemView.findViewById(R.id.iv_lesson_icon) as ImageView
+            ivExperience = itemView.findViewById(R.id.iv_experience) as ImageView
             lessonName = itemView.findViewById(R.id.tv_lesson_name)
             expCount = itemView.findViewById(R.id.tv_exp_count)
         }
     }
 
     override fun getItemCount(): Int {
-        return tasks?.size ?: 0
+        return lessons?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: LessonVieHolder, position: Int) {
-        val lessonModel = tasks?.get(position)
+        val lessonModel = lessons?.get(position)
         when (lessonModel?.type) {
             TYPE_LESSON_INTRO -> {
                 holder.taskImage.setImageDrawable(
@@ -79,11 +82,22 @@ class LessonsListRvAdapter(context: Context) :
                 )
             }
         }
-
-        holder.lessonName.text = lessonModel?.lessonName
-        holder.expCount.text = lessonModel?.experienceCount.toString()
+        if (lessonModel?.done == true) {
+            holder.cl.setBackgroundResource(R.drawable.ic_lesson_green)
+            holder.expCount.text = lessonModel.points.toString()
+            holder.ivExperience.setImageDrawable(
+                ContextCompat.getDrawable(
+                    context,
+                    R.drawable.ic_experience_green_back
+                )
+            )
+        }
+        holder.lessonName.text = lessonModel?.name
+        holder.expCount.text = lessonModel?.points.toString()
         holder.cl.setOnClickListener {
-            onClickListener?.onItemClick(position)
+            lessonModel?.let {
+                onClickListener?.onItemClick(position, it)
+            }
         }
     }
 }

@@ -1,13 +1,15 @@
 package com.dyukov.dyuandrolearn.data.db
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
+import com.dyukov.dyuandrolearn.data.db.model.Lesson
+import com.dyukov.dyuandrolearn.data.db.model.Task
+import com.dyukov.dyuandrolearn.data.db.model.User
 
-@Database(entities = [LessonItem::class], version = 1)
+@Database(entities = [Lesson::class, Task::class, User::class], version = 1)
+@TypeConverters(Converter::class)
 abstract class DyuAndroDatabase : RoomDatabase() {
-    abstract fun getLessonsDb(): DyuAndroDao
+    abstract fun getDyuAndroDao(): DyuAndroDao
 
     companion object {
         @Volatile
@@ -26,7 +28,7 @@ abstract class DyuAndroDatabase : RoomDatabase() {
 
         private fun createDatabase(context: Context) = Room.databaseBuilder(
             context.applicationContext,
-            DyuAndroDatabase::class.java, "ShoppingList"
+            DyuAndroDatabase::class.java, "DyuAndroDb"
         ).build()
     }
 }

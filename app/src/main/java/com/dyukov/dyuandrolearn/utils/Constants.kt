@@ -8,5 +8,11 @@ object Constants {
     const val TYPE_TASK_THEORY = 2
     const val TYPE_TASK_PRACTICE = 3
     const val TYPE_TASK_MORE = 4
-    const val TYPE_TASK_COMPLETED = 4
+    const val TYPE_TASK_COMPLETED = 5
+
+
+    const val KEY_ID_TASK = "KEY_ID_TASK"
+    const val KEY_ID_LESSON = "KEY_ID_LESSON"
+    const val FROM_RECOMMENDED = "FROM_RECOMMENDED"
+    const val NEXT_TASK_ID = "NEXT_TASK_ID"
 }

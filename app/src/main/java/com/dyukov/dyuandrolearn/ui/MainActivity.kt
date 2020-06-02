@@ -1,9 +1,9 @@
 package com.dyukov.dyuandrolearn.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
-import android.widget.Toast
+import android.view.View
 import androidx.annotation.IdRes
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -15,10 +15,7 @@ import com.dyukov.dyuandrolearn.extensions.gone
 import com.dyukov.dyuandrolearn.extensions.visible
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding, MainViewModelFactory>(),
@@ -66,6 +63,10 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding, MainViewMo
 
     }
 
+    fun resetBottomMenu() {
+        binding.bottomNavigationView.menu.getItem(0).isChecked = true;
+    }
+
     private fun setBottomBar(@IdRes anInt: Int) {
         bottom_navigation_view.selectedItemId = anInt
         bottom_navigation_view.setOnNavigationItemSelectedListener(this)
@@ -81,7 +82,11 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding, MainViewMo
 
     fun setNavBarVisibility(isVisible: Boolean) {
         if (isVisible)
-            bottom_navigation_view.visible()
-        else bottom_navigation_view.gone()
+            bottom_navigation_view.visibility = View.VISIBLE
+        else bottom_navigation_view.visibility = View.GONE
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 }

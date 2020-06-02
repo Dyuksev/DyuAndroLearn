@@ -1,31 +1,30 @@
 package com.dyukov.dyuandrolearn.utils
 
+import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 
-class PrefsUtils constructor(private val prefs: SharedPreferences) {
+const val PREFS_FILE_NAME = "prefs"
+
+class PreferenceStorage constructor(private val context: Context) {
     companion object {
-        private const val PREFS_LOCATION_PERMISSION_REQUESTED = "Location permission requested"
-        private const val PREFS_STORAGE_PERMISSION_REQUESTED = "Storage permission requested"
+        private const val PREFS_DATA_LOADED = "Storage PREFS_DATA_LOADED requested"
     }
 
-    fun getLocationPermissionRequested(): Boolean {
-        return prefs.getBoolean(PREFS_LOCATION_PERMISSION_REQUESTED, false)
+    fun getDataLoaded(): Boolean {
+        val prefs = context.getSharedPreferences(PREFS_FILE_NAME, Context.MODE_PRIVATE)
+        return prefs.getBoolean(PREFS_DATA_LOADED, false)
     }
 
-    fun setLocationPermissionRequested(b: Boolean) {
-        prefs.edit().putBoolean(PREFS_LOCATION_PERMISSION_REQUESTED, b).apply()
+    fun setIsDataLoaded(b: Boolean) {
+        val prefs = context.getSharedPreferences(PREFS_FILE_NAME, Context.MODE_PRIVATE)
+        val prefsEdit = prefs.edit()
+
+        prefsEdit.putBoolean(PREFS_DATA_LOADED, b)
+        prefsEdit.apply()
     }
 
-    fun getStoragePermissionRequested(): Boolean {
-        return prefs.getBoolean(PREFS_STORAGE_PERMISSION_REQUESTED, false)
-    }
-
-    fun setStoragePermissionRequested(b: Boolean) {
-        prefs.edit().putBoolean(PREFS_STORAGE_PERMISSION_REQUESTED, b).apply()
-    }
-
-    fun test() {
-        Log.e("DDDD", "DDDD")
+    fun clearIsDataLoaded() {
+        val preferences = context.getSharedPreferences(PREFS_FILE_NAME, Context.MODE_PRIVATE).edit()
+            .remove(PREFS_DATA_LOADED).commit()
     }
 }

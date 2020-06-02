@@ -10,6 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dyukov.dyuandrolearn.R
+import com.dyukov.dyuandrolearn.data.db.model.Task
 import com.dyukov.dyuandrolearn.data.network.TaskModel
 import com.dyukov.dyuandrolearn.extensions.visible
 import com.dyukov.dyuandrolearn.utils.Constants.TYPE_TASK_MORE
@@ -18,14 +19,14 @@ import com.dyukov.dyuandrolearn.utils.Constants.TYPE_TASK_PRACTICE
 import com.dyukov.dyuandrolearn.utils.Constants.TYPE_TASK_THEORY
 
 
-class TaskListRvAdapter(context: Context) :
+class TaskListRvAdapter(private var context: Context) :
     RecyclerView.Adapter<TaskListRvAdapter.TaskViewHolder>() {
 
-    var tasks: List<TaskModel>? = null
-    private var context: Context = context
+    var tasks: List<Task>? = null
 
-    fun setItems(tasks: List<TaskModel>?) {
+    fun setItems(tasks: List<Task>?) {
         this.tasks = tasks
+        notifyDataSetChanged()
     }
 
     private var onClickListener: OnItemClicked? = null
@@ -35,7 +36,7 @@ class TaskListRvAdapter(context: Context) :
     }
 
     interface OnItemClicked {
-        fun onItemClick(position: Int)
+        fun onItemClick(position: Int, task: Task)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): TaskViewHolder {
@@ -67,7 +68,7 @@ class TaskListRvAdapter(context: Context) :
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val taskModel = tasks?.get(position)
-        when (taskModel?.taskType) {
+        when (taskModel?.type) {
             TYPE_TASK_PART_LESSON -> {
                 holder.cl.setBackgroundResource(R.drawable.ic_tast_blue)
                 holder.taskImage.setImageDrawable(
@@ -105,22 +106,14 @@ class TaskListRvAdapter(context: Context) :
                 )
             }
         }
-        if (taskModel?.isCompleted == true) {
+        if (taskModel?.done == true) {
             holder.cl.setBackgroundResource(R.drawable.ic_tast_green)
-            holder.ivExperience.visible()
-            holder.tvExpCount.visible()
-            holder.tvExpCount.text = taskModel.points.toString()
-            holder.ivExperience.setImageDrawable(
-                ContextCompat.getDrawable(
-                    context,
-                    R.drawable.ic_experience_green_back
-                )
-            )
-
         }
-        holder.taskName.text = taskModel?.tastName
+        holder.taskName.text = taskModel?.name
         holder.cl.setOnClickListener {
-            onClickListener?.onItemClick(position)
+            if (taskModel != null) {
+                onClickListener?.onItemClick(position, taskModel)
+            }
         }
     }
 }
