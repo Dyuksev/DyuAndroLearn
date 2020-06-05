@@ -15,7 +15,6 @@ import kotlinx.coroutines.launch
 
 class RegistrationViewModel : BaseViewModel() {
 
-
     val etUsername = MutableLiveData("")
     val etEmail = MutableLiveData("")
     val etPassword = MutableLiveData("")

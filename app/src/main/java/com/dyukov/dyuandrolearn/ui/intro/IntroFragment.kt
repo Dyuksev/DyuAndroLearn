@@ -1,7 +1,6 @@
 package com.dyukov.dyuandrolearn.ui.intro
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.Px
@@ -9,14 +8,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.dyukov.dyuandrolearn.R
 import com.dyukov.dyuandrolearn.base.BaseFragment
-import com.dyukov.dyuandrolearn.data.db.LessonsRepository
 import com.dyukov.dyuandrolearn.data.network.LessonModel
 import com.dyukov.dyuandrolearn.data.network.TaskModel
 import com.dyukov.dyuandrolearn.data.network.UserModel
 import com.dyukov.dyuandrolearn.databinding.FragmentIntroBinding
 import com.dyukov.dyuandrolearn.ui.MainActivity
 import com.dyukov.dyuandrolearn.ui.intro.adapter.FragmentsPagerAdapter
-import com.dyukov.dyuandrolearn.ui.intro.stepFour.StepFourFragment
 import com.dyukov.dyuandrolearn.ui.intro.stepOne.StepOneFragment
 import com.dyukov.dyuandrolearn.ui.intro.stepThree.StepThreeFragment
 import com.dyukov.dyuandrolearn.ui.intro.stepTwo.StepTwoFragment
@@ -44,7 +41,7 @@ class IntroFragment : BaseFragment<IntroViewModel, FragmentIntroBinding, IntroVi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getData()
+        getLessons()
         getUserData()
     }
 
@@ -132,7 +129,6 @@ class IntroFragment : BaseFragment<IntroViewModel, FragmentIntroBinding, IntroVi
 
                         override fun onDataChange(p0: DataSnapshot) {
                             val user: UserModel? = p0.getValue(UserModel::class.java)
-                            Log.d("TAG", "user data" + user?.username)
 
                             user?.let { userModel ->
                                 viewModel.convertToDbUserAndInsert(userModel)
@@ -143,7 +139,7 @@ class IntroFragment : BaseFragment<IntroViewModel, FragmentIntroBinding, IntroVi
         }
     }
 
-    fun getData() {
+    private fun getLessons() {
         if (preferenceStorage?.getDataLoaded() == false) {
             val databaseReference = FirebaseDatabase.getInstance().getReference("lessons")
             databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {

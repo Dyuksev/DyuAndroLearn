@@ -1,21 +1,15 @@
 package com.dyukov.dyuandrolearn.ui.registration
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.dyukov.dyuandrolearn.R
 import com.dyukov.dyuandrolearn.base.BaseFragment
 import com.dyukov.dyuandrolearn.data.network.UserModel
 import com.dyukov.dyuandrolearn.databinding.FragmentRegisterBinding
-import com.dyukov.dyuandrolearn.ui.MainActivity
 import com.dyukov.dyuandrolearn.utils.Utils
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -30,7 +24,6 @@ class RegistrationFragment :
     override fun viewModelFactory(): RegistrationViewModelFactory = RegistrationViewModelFactory()
 
     private val mDatabaseReference: DatabaseReference? by instance<DatabaseReference>()
-    val userModel: UserModel by instance<UserModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -84,6 +77,4 @@ class RegistrationFragment :
             .show()
         requireActivity().onBackPressed()
     }
-
-
 }

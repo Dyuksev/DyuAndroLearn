@@ -10,17 +10,13 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.dyukov.dyuandrolearn.R
 import com.dyukov.dyuandrolearn.base.BaseFragment
-import com.dyukov.dyuandrolearn.data.network.UserModel
 import com.dyukov.dyuandrolearn.databinding.FragmentLoginBinding
 import com.dyukov.dyuandrolearn.ui.MainActivity
 import com.dyukov.dyuandrolearn.utils.Utils
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import org.kodein.di.generic.instance
 
 
 class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding, LoginViewModelFactory>() {
@@ -28,19 +24,10 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding, LoginVi
     override fun layoutResId(): Int = R.layout.fragment_login
     override fun viewModelClass(): Class<LoginViewModel> = LoginViewModel::class.java
     override fun viewModelFactory(): LoginViewModelFactory = LoginViewModelFactory()
-    private val mDatabaseReference: DatabaseReference? by instance<DatabaseReference>()
-    private val mDatabase: FirebaseDatabase? by instance<FirebaseDatabase>()
-
-    val userModel: UserModel by instance<UserModel>()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-
     }
 
     override fun onResume() {
@@ -111,14 +98,12 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding, LoginVi
             })
     }
 
-    fun showResetPasswordDialog() {
+    private fun showResetPasswordDialog() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(activity)
         builder.setTitle("Enter your email to receive a password reset link")
-
         val input = EditText(activity)
         input.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
         builder.setView(input)
-
 
         builder.setPositiveButton("Reset password",
             DialogInterface.OnClickListener { dialog, which ->

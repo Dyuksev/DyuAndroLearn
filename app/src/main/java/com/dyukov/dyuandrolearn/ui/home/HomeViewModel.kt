@@ -1,20 +1,16 @@
 package com.dyukov.dyuandrolearn.ui.home
 
-import android.util.Log
-import android.util.Log.d
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.dyukov.dyuandrolearn.base.BaseViewModel
-import com.dyukov.dyuandrolearn.data.db.LessonsRepository
+import com.dyukov.dyuandrolearn.data.db.Repository
 import com.dyukov.dyuandrolearn.data.db.model.Lesson
 import com.dyukov.dyuandrolearn.data.db.model.Task
 import com.dyukov.dyuandrolearn.data.db.model.User
 import com.dyukov.dyuandrolearn.data.network.LessonModel
 import com.dyukov.dyuandrolearn.data.network.TaskModel
 import kotlinx.coroutines.*
-import timber.log.Timber
 
-class HomeViewModel(private val repository: LessonsRepository) : BaseViewModel() {
+class HomeViewModel(private val repository: Repository) : BaseViewModel() {
     private val lessons: ArrayList<Lesson> = ArrayList()
     private val tasks: ArrayList<Task> = ArrayList()
     var user = MutableLiveData<User>()

@@ -2,21 +2,14 @@ package com.dyukov.dyuandrolearn.ui.home
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dyukov.dyuandrolearn.R
 import com.dyukov.dyuandrolearn.base.BaseFragment
-import com.dyukov.dyuandrolearn.data.db.LessonsRepository
 import com.dyukov.dyuandrolearn.data.db.model.Task
 import com.dyukov.dyuandrolearn.data.db.model.User
-import com.dyukov.dyuandrolearn.data.network.LessonModel
-import com.dyukov.dyuandrolearn.data.network.TaskModel
-import com.dyukov.dyuandrolearn.data.network.UserModel
 import com.dyukov.dyuandrolearn.databinding.FragmentHomeBinding
 import com.dyukov.dyuandrolearn.extensions.toPx
 import com.dyukov.dyuandrolearn.ui.MainActivity
@@ -26,9 +19,6 @@ import com.dyukov.dyuandrolearn.utils.Constants
 import com.dyukov.dyuandrolearn.utils.PreferenceStorage
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
 
@@ -44,8 +34,6 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeViewMo
     private val preferenceStorage: PreferenceStorage? by instance<PreferenceStorage>()
 
     override fun layoutResId(): Int = R.layout.fragment_home
-
-    private val userModel by instance<UserModel>()
 
     override fun onResume() {
         super.onResume()

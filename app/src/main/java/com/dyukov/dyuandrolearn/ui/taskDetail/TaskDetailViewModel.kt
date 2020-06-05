@@ -2,14 +2,13 @@ package com.dyukov.dyuandrolearn.ui.taskDetail
 
 import androidx.lifecycle.MutableLiveData
 import com.dyukov.dyuandrolearn.base.BaseViewModel
-import com.dyukov.dyuandrolearn.data.db.LessonsRepository
+import com.dyukov.dyuandrolearn.data.db.Repository
 import com.dyukov.dyuandrolearn.data.db.model.Task
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
-class TaskDetailViewModel(private val repository: LessonsRepository) : BaseViewModel() {
+class TaskDetailViewModel(private val repository: Repository) : BaseViewModel() {
 
     val task = MutableLiveData<Task>()
     val isFromRecommend = MutableLiveData(false)
@@ -34,5 +33,4 @@ class TaskDetailViewModel(private val repository: LessonsRepository) : BaseViewM
             }
         }
     }
-
 }

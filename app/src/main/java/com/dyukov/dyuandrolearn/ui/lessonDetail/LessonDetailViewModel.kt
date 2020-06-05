@@ -1,13 +1,11 @@
 package com.dyukov.dyuandrolearn.ui.lessonDetail
 
 import android.content.Context
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.Transformations
 import com.dyukov.dyuandrolearn.R
 import com.dyukov.dyuandrolearn.base.BaseViewModel
-import com.dyukov.dyuandrolearn.data.db.LessonsRepository
+import com.dyukov.dyuandrolearn.data.db.Repository
 import com.dyukov.dyuandrolearn.data.db.model.Lesson
 import com.dyukov.dyuandrolearn.data.db.model.Task
 import com.dyukov.dyuandrolearn.data.db.model.User
@@ -16,7 +14,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class LessonDetailViewModel(private val repository: LessonsRepository) : BaseViewModel() {
+class LessonDetailViewModel(private val repository: Repository) : BaseViewModel() {
 
     val taskFromDb = MutableLiveData<List<Task>>()
     val tasksSize = MutableLiveData("")

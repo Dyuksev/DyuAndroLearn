@@ -2,18 +2,13 @@ package com.dyukov.dyuandrolearn.ui.learn
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dyukov.dyuandrolearn.R
 import com.dyukov.dyuandrolearn.base.BaseFragment
-import com.dyukov.dyuandrolearn.data.db.LessonsRepository
 import com.dyukov.dyuandrolearn.data.db.model.Lesson
 import com.dyukov.dyuandrolearn.data.db.model.Task
-import com.dyukov.dyuandrolearn.data.network.TaskModel
-import com.dyukov.dyuandrolearn.data.network.UserModel
-import com.dyukov.dyuandrolearn.data.network.LessonModel
 import com.dyukov.dyuandrolearn.databinding.FragmentLoginBinding
 import com.dyukov.dyuandrolearn.extensions.toPx
 import com.dyukov.dyuandrolearn.ui.MainActivity
@@ -21,11 +16,8 @@ import com.dyukov.dyuandrolearn.ui.home.adapter.HorizontalSpaceMarginItemDecorat
 import com.dyukov.dyuandrolearn.ui.home.adapter.TaskListRvAdapter
 import com.dyukov.dyuandrolearn.ui.learn.adapter.LessonsListRvAdapter
 import com.dyukov.dyuandrolearn.utils.Constants
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_learn.*
 import kotlinx.android.synthetic.main.fragment_learn.rv_tasks
-import kotlinx.android.synthetic.main.fragment_lesson_detail.*
-import org.kodein.di.generic.instance
 
 class LearnFragment : BaseFragment<LearnViewModel, FragmentLoginBinding, LearnViewModelFactory>() {
 

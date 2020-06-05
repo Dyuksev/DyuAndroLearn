@@ -2,7 +2,7 @@ package com.dyukov.dyuandrolearn.ui.intro
 
 import androidx.lifecycle.MutableLiveData
 import com.dyukov.dyuandrolearn.base.BaseViewModel
-import com.dyukov.dyuandrolearn.data.db.LessonsRepository
+import com.dyukov.dyuandrolearn.data.db.Repository
 import com.dyukov.dyuandrolearn.data.db.model.Lesson
 import com.dyukov.dyuandrolearn.data.db.model.Task
 import com.dyukov.dyuandrolearn.data.db.model.User
@@ -12,7 +12,7 @@ import com.dyukov.dyuandrolearn.data.network.UserModel
 import kotlinx.coroutines.*
 
 class IntroViewModel(
-    private val repository: LessonsRepository
+    private val repository: Repository
 ) : BaseViewModel() {
     var currentPosition: Int = 0
 
@@ -52,7 +52,6 @@ class IntroViewModel(
         }
         insertAllTasks(tasks)
         insertAllLessons(lessons)
-
     }
 
 

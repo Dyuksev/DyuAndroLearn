@@ -3,7 +3,7 @@ package com.dyukov.dyuandrolearn.ui.learn
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.dyukov.dyuandrolearn.base.BaseViewModel
-import com.dyukov.dyuandrolearn.data.db.LessonsRepository
+import com.dyukov.dyuandrolearn.data.db.Repository
 import com.dyukov.dyuandrolearn.data.db.model.Lesson
 import com.dyukov.dyuandrolearn.data.db.model.Task
 import com.dyukov.dyuandrolearn.data.db.model.User
@@ -12,7 +12,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class LearnViewModel(private val repository: LessonsRepository) : BaseViewModel() {
+class LearnViewModel(private val repository: Repository) : BaseViewModel() {
 
     val taskFromDb = MutableLiveData<List<Task>>()
     val lessonsFromDb = MutableLiveData<List<Lesson>>()
@@ -47,5 +47,4 @@ class LearnViewModel(private val repository: LessonsRepository) : BaseViewModel(
             }
         }
     }
-
 }

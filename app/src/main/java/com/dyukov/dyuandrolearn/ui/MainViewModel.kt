@@ -1,14 +1,10 @@
 package com.dyukov.dyuandrolearn.ui
 
 import com.dyukov.dyuandrolearn.base.BaseViewModel
-import com.dyukov.dyuandrolearn.data.db.LessonsRepository
-import com.dyukov.dyuandrolearn.data.db.model.Lesson
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.dyukov.dyuandrolearn.data.db.Repository
 
 class MainViewModel(
-    private val repository: LessonsRepository
+    private val repository: Repository
 ) : BaseViewModel() {
 
 //    fun insertAllLessons(lesson: ArrayList<Lesson>) {

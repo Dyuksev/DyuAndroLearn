@@ -31,7 +31,7 @@ abstract class BaseActivity<V : BaseViewModel, B : ViewDataBinding, T : ViewMode
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = viewModelFactory().create(viewModelClass())
-        binding  = DataBindingUtil.setContentView(this, layoutResId())
+        binding = DataBindingUtil.setContentView(this, layoutResId())
         binding.lifecycleOwner = this
         binding.executePendingBindings()
     }

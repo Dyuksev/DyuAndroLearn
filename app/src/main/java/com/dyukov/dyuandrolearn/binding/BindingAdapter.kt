@@ -6,7 +6,6 @@ import timber.log.Timber
 
 @BindingAdapter("visibility")
 fun setVisibility(view: View, isVisible: Boolean) {
-     Timber.d("+++ isPrivate: $isVisible")
      view.visibility = if (isVisible) View.VISIBLE else View.GONE
 }
 

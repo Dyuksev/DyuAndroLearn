@@ -7,7 +7,7 @@ const val PREFS_FILE_NAME = "prefs"
 
 class PreferenceStorage constructor(private val context: Context) {
     companion object {
-        private const val PREFS_DATA_LOADED = "Storage PREFS_DATA_LOADED requested"
+        private const val PREFS_DATA_LOADED = "PREFS_DATA_LOADED"
     }
 
     fun getDataLoaded(): Boolean {

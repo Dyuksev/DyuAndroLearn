@@ -1,7 +1,6 @@
 package com.dyukov.dyuandrolearn.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.annotation.IdRes
@@ -9,7 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.dyukov.dyuandrolearn.R
 import com.dyukov.dyuandrolearn.base.BaseActivity
-import com.dyukov.dyuandrolearn.data.db.LessonsRepository
+import com.dyukov.dyuandrolearn.data.db.Repository
 import com.dyukov.dyuandrolearn.databinding.ActivityMainBinding
 import com.dyukov.dyuandrolearn.extensions.gone
 import com.dyukov.dyuandrolearn.extensions.visible
@@ -23,7 +22,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding, MainViewMo
 
     override fun viewModelClass(): Class<MainViewModel> = MainViewModel::class.java
 
-    val lessonsRepository by instance<LessonsRepository>()
+    val lessonsRepository by instance<Repository>()
     override fun viewModelFactory(): MainViewModelFactory =
         MainViewModelFactory(lessonsRepository)
 

@@ -2,21 +2,16 @@ package com.dyukov.dyuandrolearn.ui.taskDetail
 
 import android.os.Bundle
 import android.os.Handler
-import android.text.Html
 import android.view.View
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.dyukov.dyuandrolearn.R
 import com.dyukov.dyuandrolearn.base.BaseFragment
-import com.dyukov.dyuandrolearn.data.db.LessonsRepository
 import com.dyukov.dyuandrolearn.databinding.FragmentTaskDetailBinding
 import com.dyukov.dyuandrolearn.ui.MainActivity
-import com.dyukov.dyuandrolearn.ui.intro.IntroViewModelFactory
 import com.dyukov.dyuandrolearn.utils.Constants
-import kotlinx.android.synthetic.main.fragment_intro.*
 import kotlinx.android.synthetic.main.fragment_task_detail.*
-import org.kodein.di.generic.instance
 
 class TaskDetailFragment :
     BaseFragment<TaskDetailViewModel, FragmentTaskDetailBinding, TaskDetailViewModelFactory>() {
