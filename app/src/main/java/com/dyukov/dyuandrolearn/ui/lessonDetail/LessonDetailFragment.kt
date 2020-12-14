@@ -10,13 +10,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.dyukov.dyuandrolearn.R
 import com.dyukov.dyuandrolearn.base.BaseFragment
 import com.dyukov.dyuandrolearn.data.db.model.Task
-import com.dyukov.dyuandrolearn.data.db.model.User
-import com.dyukov.dyuandrolearn.data.network.TaskModel
 import com.dyukov.dyuandrolearn.databinding.FragmentLessonDetailBinding
 import com.dyukov.dyuandrolearn.ui.lessonDetail.adapter.TaskLessonRvAdapter
 import com.dyukov.dyuandrolearn.utils.Constants
-import kotlinx.android.synthetic.main.fragment_learn.*
-import kotlinx.android.synthetic.main.fragment_learn.rv_tasks
 import kotlinx.android.synthetic.main.fragment_lesson_detail.*
 import timber.log.Timber
 
@@ -57,7 +53,7 @@ class LessonDetailFragment :
         })
         viewModel.isLessonUpdated.observe(viewLifecycleOwner, Observer {
             if (it != null && it == true && viewModel.progress.value != 100) {
-                findNavController().popBackStack()
+
             }
         })
 
@@ -78,11 +74,24 @@ class LessonDetailFragment :
         }
         taskListRvAdapter.setOnClickListener(object : TaskLessonRvAdapter.OnItemClicked {
             override fun onItemClick(position: Int, task: Task) {
-                val bundle = Bundle()
-                bundle.putInt(Constants.KEY_ID_TASK, task.id!!)
-                bundle.putBoolean(Constants.FROM_RECOMMENDED, false)
-                findNavController().navigate(R.id.tast_detail_fragment, bundle)
+//                when (task.type) {
+//                    1 -> {
+//                        val bundle = Bundle()
+//                        bundle.putInt(Constants.KEY_ID_TASK, task.id!!)
+//                        bundle.putBoolean(Constants.FROM_RECOMMENDED, false)
+//                        findNavController().navigate(R.id.tast_detail_fragment, bundle)
+//                    }
+//                    2 -> {
+//                        findNavController().navigate(
+//                            LessonDetailFragmentDirections.actionProfileToQuizStart(
+//                                task
+//                            )
+//                        )
+//                    }
+//                }
+
             }
         })
     }
+
 }

@@ -1,32 +1,37 @@
 <resources>
     <string name="app_name">DyuAndroLearn</string>
-    <string name="step_one_text">Welcome to the world of Android development! Are you ready to learn this fascinating and interesting world? </string>
-    <string name="step_two_text">It has never been so fun and interesting to study programming as playing.We worked out a system of exercises so that you do not get bored for a minute and enjoy the learning process</string>
-    <string name="step_three_text">For each task you complete, you get experience points and increase your level! Good luck!</string>
+    <string name="step_one_text">Ласкаво просимо у світ розробки Android! Ви готові пізнати цей захоплюючий і цікавий світ? </string>
+    <string name="step_two_text">Ще ніколи не було так весело і цікаво вивчати програмування, як у ігровій формі. Ми розробили систему вправ, щоб ви не нудьгували ні хвилини і насолоджувались процесом навчання</string>
+    <string name="step_three_text">За кожне виконане завдання ви отримуєте бали досвіду та підвищуєте свій рівень! Хай щастить!</string>
     <string name="step_four_text"> </string>
-    <string name="home">Home</string>
-    <string name="profile">Profile</string>
-    <string name="learning">Learning</string>
-    <string name="learning_title">Learning</string>
+    <string name="home">Домашня сторінка</string>
+    <string name="profile">Профіль</string>
+    <string name="learning">Вивчати</string>
+    <string name="hello_s">Вітаємо, %s</string>
+    <string name="lesson_s">%s</string>
+    <string name="lessons_done_s">Виконано завдань %d / %d</string>
+    <string name="streak_s">+%d за серію відповідей</string>
+    <string name="learning_title">Вивчати</string>
     <string name="points_count">%s/100</string>
-    <string name="hello">hey</string>
-    <string name="your_progress">Your progress</string>
-    <string name="recommended_tasks">Recommended tasks</string>
-    <string name="recommended_tasks_hint">We are recommend to start with it</string>
+    <string name="hello">Привіт</string>
+    <string name="your_progress">Ваш Прогрес</string>
+    <string name="your_level">Рівень</string>
+    <string name="recommended_tasks">Рекомендовані завдання</string>
+    <string name="recommended_tasks_hint">Ми рекомендуємо почати з цього</string>
 
-    <string name="tv_lessons">Lessons</string>
-    <string name="tv_lessons_hint">We suggest starting with these lessons</string>
+    <string name="tv_lessons">Уроки</string>
+    <string name="tv_lessons_hint">Ми радимо почати з цих завдань</string>
 
-    <string name="tv_theory">Theory</string>
-    <string name="tv_theory_hint">This section contains the whole theory that you learn in the lessons.</string>
+    <string name="tv_theory">Теорія</string>
+    <string name="tv_theory_hint">Ця секція містить теоретичні завдання</string>
 
-    <string name="tv_practice">Practice</string>
+    <string name="tv_practice">Практика</string>
     <string name="tv_practice_hint">Strengthen your knowledge by doing these exercises</string>
 
-    <string name="tv_my_profile">My profile</string>
-    <string name="tv_settings">Settings</string>
-    <string name="tv_help">Help</string>
-    <string name="tv_lessons_contains">The lesson contains %s tasks</string>
-    <string name="tv_completed_tasks">You have completed %s/%s tasks</string>
-    <string name="wait_toast">Wait a second! Data is loading</string>
+    <string name="tv_my_profile">Мій профіль</string>
+    <string name="tv_settings">Налаштування</string>
+    <string name="tv_help">Допомога</string>
+    <string name="tv_lessons_contains">Урок складається з %s завдань</string>
+    <string name="tv_completed_tasks">Закінчено %s/%s завдань</string>
+    <string name="wait_toast">Зачекай хвилинку! Дані завантажуються!!</string>
 </resources>

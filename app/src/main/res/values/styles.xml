@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -7,5 +7,56 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="splashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="FullScreenDialog" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@style/Animation.WindowSlideUpDown</item>
+        <!-- New MaterialComponents attributes. -->
+
+        <item name="scrimBackground">@color/colorPrimary</item>
+        <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1
+        </item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2
+        </item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.MaterialComponents.Headline3
+        </item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.MaterialComponents.Headline4
+        </item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.MaterialComponents.Headline5
+        </item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.MaterialComponents.Headline6
+        </item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.MaterialComponents.Subtitle1
+        </item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.MaterialComponents.Subtitle2
+        </item>
+        <item name="textAppearanceBody1">@style/TextAppearance.MaterialComponents.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.MaterialComponents.Body2</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.MaterialComponents.Caption</item>
+        <item name="textAppearanceButton">@style/TextAppearance.MaterialComponents.Button</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
+    </style>
+
+    <style name="ServicesDialogTheme" parent="FullScreenDialog">
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:ignore="NewApi">shortEdges</item>
+    </style>
+
+    <style name="Animation.WindowSlideUpDown" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/fade_in_dialog</item>
+        <item name="android:windowExitAnimation">@anim/fade_out_dialog</item>
+    </style>
+
 
 </resources>

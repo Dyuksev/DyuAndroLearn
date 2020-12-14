@@ -4,9 +4,10 @@ import android.content.Context
 import androidx.room.*
 import com.dyukov.dyuandrolearn.data.db.model.Lesson
 import com.dyukov.dyuandrolearn.data.db.model.Task
+import com.dyukov.dyuandrolearn.data.db.model.Theory
 import com.dyukov.dyuandrolearn.data.db.model.User
 
-@Database(entities = [Lesson::class, Task::class, User::class], version = 1)
+@Database(entities = [Lesson::class, Task::class, User::class, Theory::class], version = 1)
 @TypeConverters(Converter::class)
 abstract class DyuAndroDatabase : RoomDatabase() {
     abstract fun getDyuAndroDao(): DyuAndroDao

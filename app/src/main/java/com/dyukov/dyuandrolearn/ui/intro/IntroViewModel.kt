@@ -6,9 +6,7 @@ import com.dyukov.dyuandrolearn.data.db.Repository
 import com.dyukov.dyuandrolearn.data.db.model.Lesson
 import com.dyukov.dyuandrolearn.data.db.model.Task
 import com.dyukov.dyuandrolearn.data.db.model.User
-import com.dyukov.dyuandrolearn.data.network.LessonModel
-import com.dyukov.dyuandrolearn.data.network.TaskModel
-import com.dyukov.dyuandrolearn.data.network.UserModel
+import com.dyukov.dyuandrolearn.data.network.*
 import kotlinx.coroutines.*
 
 class IntroViewModel(
@@ -21,32 +19,28 @@ class IntroViewModel(
     val taskFromDb = MutableLiveData<List<Task>>()
     lateinit var lesson: Lesson
 
-    fun toDbLessons(lessonModels: ArrayList<LessonModel>, taskModel: ArrayList<TaskModel>) {
-        lessonModels.forEach {
-            val tasksInt = ArrayList<Int>()
-            it.tasks?.let {
-                it.forEach { task ->
-                    tasksInt.add(task.id ?: 0)
-                }
-            }
+    fun toDbLessons(appData: DyuData) {
+
+        appData.lessons?.forEach {
+
             val lesson = Lesson(
+                id = it.id,
+                type = it.type ?: 1,
                 name = it.name.orEmpty(),
-                description = it.description.orEmpty(),
-                tasks = tasksInt,
                 points = it.points ?: 0,
-                type = it.type ?: 0,
-                done = it.done ?: false
+                theoryId = it.theoryId ?: 1,
+                tasksId = it.tasksId ?: arrayListOf()
             )
             lessons.add(lesson)
         }
-        taskModel.forEach {
+        appData.tasks?.forEach {
             val task = Task(
-                name = it.name.orEmpty(),
+                id = it.id,
+                data = it.data,
+                theoryId = it.theoryId ?: 1,
                 points = it.points ?: 0,
-                type = it.type ?: 0,
-                done = it.done,
-                composition = it.composition.toString(),
-                suggested = it.suggested
+                isPrimary = it.primary,
+                done = it.done
             )
             tasks.add(task)
         }
@@ -72,26 +66,9 @@ class IntroViewModel(
         }
     }
 
-    fun getSuggestedTasks() {
-        GlobalScope.launch(Dispatchers.IO) {
-            val list: ArrayList<Lesson> = ArrayList<Lesson>()
-            val tasks: ArrayList<Task> = ArrayList<Task>()
-            for (lesson in repository.getAllLessons()) {
-                list.add(lesson)
-            }
-
-            for (lesson in list) {
-                for (task in lesson.tasks) {
-                    tasks.add(repository.getTasksFromLesson(task))
-                }
-            }
-            taskFromDb.postValue(tasks)
-        }
-    }
-
     fun convertToDbUserAndInsert(userModel: UserModel?) {
         userModel?.let {
-            val user = User(it.username, it.email, it.level, it.progress)
+            val user = User(it.name, it.email, it.level, it.progress, it.doneLessonsId, it.doneTheoryId)
             GlobalScope.launch(Dispatchers.IO) {
                 repository.insert(user)
             }

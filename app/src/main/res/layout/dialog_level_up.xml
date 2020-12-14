@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_lesson"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:outlineSpotShadowColor="@color/cardview_shadow_end_color"
+        android:translationZ="1dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        tools:ignore="UnusedAttribute">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_step_three"
+                app:layout_constraintBottom_toTopOf="@+id/tv_failed"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_failed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="54dp"
+                android:layout_marginEnd="54dp"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:text="Ви отримали новий рівень"
+                android:textColor="@color/text_blackType1"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_confetti2"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_level"
+                app:layout_constraintEnd_toStartOf="@+id/tv_level"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintTop_toTopOf="@+id/tv_level" />
+
+            <TextView
+                android:id="@+id/tv_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="54dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="54dp"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:padding="15dp"
+                android:text="2"
+                android:textColor="@color/green5"
+                android:textSize="42sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_start"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_failed"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/tv_new_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="54dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="54dp"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:visibility="invisible"
+                android:padding="15dp"
+                android:text="2"
+                android:textColor="@color/green5"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_start"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_failed"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_confetti2"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_level"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@+id/tv_level"
+                app:layout_constraintTop_toTopOf="@+id/tv_level" />
+
+            <TextView
+                android:id="@+id/tv_start"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ripple_bg_rect_blue_rounded_10"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="ДОБРЕ"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="1"
+                app:lineHeight="20dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

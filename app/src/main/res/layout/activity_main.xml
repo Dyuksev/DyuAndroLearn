@@ -12,46 +12,65 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/bottom_navigation_view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:context=".ui.MainActivity">
+            android:layout_height="match_parent"
+            android:background="@color/home_background"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <fragment
-                android:id="@+id/nav_host_fragment"
-                android:name="androidx.navigation.fragment.NavHostFragment"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:defaultNavHost="true"
-                app:navGraph="@navigation/nav_graph" />
+                app:layout_constraintBottom_toTopOf="@id/bottom_app_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:context=".ui.MainActivity">
 
-            <ProgressBar
-                android:id="@+id/progressBar"
+                <fragment
+                    android:id="@+id/nav_host_fragment"
+                    android:name="androidx.navigation.fragment.NavHostFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:defaultNavHost="true"
+                    app:navGraph="@navigation/nav_graph" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_marginBottom="150dp"
+                    android:indeterminateTint="@color/colorAccent"
+                    android:minWidth="60dp"
+                    android:minHeight="60dp"
+                    android:progress="@color/colorPrimary"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+
+            <com.google.android.material.bottomappbar.BottomAppBar
+                android:id="@+id/bottom_app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@drawable/bg_white_stroke"
+                app:hideOnScroll="true"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:menu="@menu/bottom_navigation_main"
+                app:navigationIcon="@drawable/ic_close" />
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|bottom"
-                android:layout_marginBottom="150dp"
-                android:indeterminateTint="@color/colorAccent"
-                android:minWidth="60dp"
-                android:minHeight="60dp"
-                android:progress="@color/colorPrimary"
-                android:visibility="gone" />
-        </FrameLayout>
+                android:backgroundTint="@color/colorPrimary"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_start"
+                app:layout_anchor="@id/bottom_app_bar" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation_view"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:background="@drawable/bottom_bar_background"
-            app:itemIconTint="@drawable/selector_bottom_bar_color"
-            app:labelVisibilityMode="selected"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/bottom_navigation_main" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

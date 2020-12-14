@@ -25,13 +25,17 @@ class ProfileFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        btn_logout.setOnClickListener {
+//            mAuth.signOut()
+//            preferenceStorage?.clearIsDataLoaded()
+//            findNavController().navigate(R.id.action_profile_to_login)
+//            (activity as MainActivity).resetBottomMenu()
+//
+//        }
+    }
 
-        btn_logout.setOnClickListener {
-            mAuth.signOut()
-            preferenceStorage?.clearIsDataLoaded()
-            findNavController().navigate(R.id.action_profile_to_login)
-            (activity as MainActivity).resetBottomMenu()
-
-        }
+    override fun onStart() {
+        super.onStart()
+        (activity as MainActivity).setNavBarVisibility(false)
     }
 }

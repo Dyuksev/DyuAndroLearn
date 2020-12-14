@@ -31,17 +31,17 @@ class LessonDetailViewModel(private val repository: Repository) : BaseViewModel(
     var lessonId = 0
 
     fun getTasksByLesson() {
-        GlobalScope.launch(Dispatchers.IO) {
-            val tasks: ArrayList<Task> = ArrayList<Task>()
-            val lesson = repository.getLesson(lessonId)
-            lessonsFromDb.postValue(lesson)
-            lesson.tasks.let {
-                for (task in lesson.tasks) {
-                    tasks.add(repository.getTasksFromLesson(task))
-                }
-                taskFromDb.postValue(tasks)
-            }
-        }
+//        GlobalScope.launch(Dispatchers.IO) {
+//            val tasks: ArrayList<Task> = ArrayList<Task>()
+//            val lesson = repository.getLesson(lessonId)
+//            lessonsFromDb.postValue(lesson)
+//            lesson.tasks.let {
+//                for (task in lesson.tasks) {
+//                    tasks.add(repository.getTasksFromLesson(task))
+//                }
+//                taskFromDb.postValue(tasks)
+//            }
+//        }
     }
 
     fun getUserModel() {
@@ -54,83 +54,84 @@ class LessonDetailViewModel(private val repository: Repository) : BaseViewModel(
     }
 
     fun countCompletedTasks(context: Context) {
-        var count = 0
-        val size = taskFromDb.value?.size ?: 0
-        val pointPerTask = ArrayList<Int>()
-        taskFromDb.value?.forEach {
-            if (it.done) {
-                count++
-                pointPerTask.add(it.points)
-            }
-        }
-        if (size == count) {
-            updateLesson()
-        } else if (count < size) {
-            updateUserProgressByTask(count, pointPerTask)
-        }
-        progress.value = (PROGRESS_MAX.div(size)).times(count)
-        completedTasks.value =
-            context.getString(
-                R.string.tv_completed_tasks,
-                count.toString(), size.toString()
-            )
-        tasksSize.value = context.getString(R.string.tv_lessons_contains, size.toString())
+//        var count = 0
+////        val size = taskFromDb.value?.size ?: 0
+////        val pointPerTask = ArrayList<Int>()
+////        taskFromDb.value?.forEach {
+////            if (it.done!!) {
+////                count++
+////                pointPerTask.add(it.points!!)
+////            }
+////        }
+////        if (size == count) {
+////            if (lessonsFromDb.value?.done == false)
+////                updateLesson()
+////        } else if (count < size) {
+////            updateUserProgressByTask(count, pointPerTask)
+////        }
+//        progress.value = (PROGRESS_MAX.div(size)).times(count)
+//        completedTasks.value =
+//            context.getString(
+//                R.string.tv_completed_tasks,
+//                count.toString(), size.toString()
+//            )
+//        tasksSize.value = context.getString(R.string.tv_lessons_contains, size.toString())
     }
 
     fun updateLesson() {
-        GlobalScope.launch(Dispatchers.IO) {
-            lessonsFromDb.value?.let {
-                val updatedLesson =
-                    Lesson(
-                        it.name,
-                        it.description,
-                        it.tasks,
-                        it.points,
-                        it.type,
-                        true,
-                        it.id
-                    )
-                repository.update(updatedLesson)
-                updateUserProgress()
-            }
-        }
+//        GlobalScope.launch(Dispatchers.IO) {
+//            lessonsFromDb.value?.let {
+//                val updatedLesson =
+//                    Lesson(
+//                        it.name,
+//                        it.description,
+//                        it.tasks,
+//                        it.points,
+//                        it.type,
+//                        true,
+//                        it.id
+//                    )
+//                repository.update(updatedLesson)
+//                updateUserProgress()
+//            }
+//        }
     }
 
     fun updateUserProgress() {
-        GlobalScope.launch(Dispatchers.IO) {
-            user.value?.let {
-                var currentLevel = it.level
-                var currentPoints = it.progress.plus(lessonsFromDb.value?.points ?: 0)
-
-                if (currentPoints >= PROGRESS_MAX) {
-                    currentLevel++
-                    currentPoints -= PROGRESS_MAX
-                }
-                val userUpdated = User(it.name, it.email, currentLevel, currentPoints, it.id)
-                repository.update(userUpdated)
-
-                isLessonUpdated.postValue(true)
-            }
-        }
+//        GlobalScope.launch(Dispatchers.IO) {
+//            user.value?.let {
+//                var currentLevel = it.level
+//                var currentPoints = it.progress?.plus(lessonsFromDb.value?.points ?: 0)
+//
+//                if (currentPoints >= PROGRESS_MAX) {
+//                    currentLevel++
+//                    currentPoints -= PROGRESS_MAX
+//                }
+//                val userUpdated = User(it.name, it.email, currentLevel, currentPoints, it.id)
+//                repository.update(userUpdated)
+//
+//                isLessonUpdated.postValue(true)
+//            }
+//        }
     }
 
     fun updateUserProgressByTask(count: Int, points: ArrayList<Int>) {
-        GlobalScope.launch(Dispatchers.IO) {
-            user.value?.let {
-                var currentLevel = it.level
-                var takenPoints = 0
-                for (p in points)
-                    takenPoints += p
-                var currentPoints = it.progress.plus(takenPoints)
-
-                if (currentPoints >= PROGRESS_MAX) {
-                    currentLevel++
-                    currentPoints -= PROGRESS_MAX
-                }
-                val userUpdated = User(it.name, it.email, currentLevel, currentPoints, it.id)
-                repository.update(userUpdated)
-            }
-        }
+//        GlobalScope.launch(Dispatchers.IO) {
+//            user.value?.let {
+//                var currentLevel = it.level
+//                var takenPoints = 0
+//                for (p in points)
+//                    takenPoints += p
+//                var currentPoints = it.progress.plus(takenPoints)
+//
+//                if (currentPoints >= PROGRESS_MAX) {
+//                    currentLevel++
+//                    currentPoints -= PROGRESS_MAX
+//                }
+//                val userUpdated = User(it.name, it.email, currentLevel, currentPoints, it.id)
+//                repository.update(userUpdated)
+//            }
+//        }
     }
 
     companion object {

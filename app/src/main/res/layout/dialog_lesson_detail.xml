@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.dyukov.dyuandrolearn.ui.dialogLessonDetail.LessonDetailViewModel" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black40">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_lesson"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:outlineSpotShadowColor="@color/cardview_shadow_end_color"
+            android:translationZ="1dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UnusedAttribute">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_lesson_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="25dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@{@string/lesson_s(viewModel.lessonName)}"
+                    android:textColor="@color/text_blackType1"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/line_progress"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:lineHeight="20dp"
+                    tools:text="Урок 1. Основи" />
+
+                <TextView
+                    android:id="@+id/tv_done_tasks"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@{viewModel.lessonProgress}"
+                    android:textColor="@color/text_blackType1"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_lesson_name"
+                    app:lineHeight="20dp"
+                    tools:text="Виконано завдань 1 / 3 " />
+
+                <TextView
+                    android:id="@+id/tv_theory"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/ripple_bg_rect_green_0"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.onTheoryClick()}"
+                    android:text="ТЕОРІЯ"
+                    android:textColor="@color/text_blackType1"
+                    android:textSize="19sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_done_tasks"
+                    app:lineHeight="20dp" />
+
+                <TextView
+                    android:id="@+id/tv_start"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/ripple_bg_rect_blue_rounded_10"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.onStartClick()}"
+                    android:text="СТАРТ"
+                    android:textColor="@color/white"
+                    android:textSize="19sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_theory"
+                    app:lineHeight="20dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> viewModel.onStartClick()}"
+                    android:src="@drawable/ic_start"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_start"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.62"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_theory" />
+
+                <com.dinuscxj.progressbar.CircleProgressBar
+                    android:id="@+id/line_progress"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:layout_marginEnd="25dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:progress_end_color="@color/colorPrimary"
+                    app:progress_start_color="@color/colorPrimary"
+                    app:progress_stroke_width="5dp"
+                    app:progress_style="solid_line"
+                    app:progress_text_color="@color/colorPrimary"
+                    app:progress_text_size="24sp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

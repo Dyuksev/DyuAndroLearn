@@ -3,11 +3,12 @@ package com.dyukov.dyuandrolearn.data.db
 import androidx.room.*
 import com.dyukov.dyuandrolearn.data.db.model.Lesson
 import com.dyukov.dyuandrolearn.data.db.model.Task
+import com.dyukov.dyuandrolearn.data.db.model.Theory
 import com.dyukov.dyuandrolearn.data.db.model.User
 
 @Dao
 interface DyuAndroDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(item: Lesson)
 
     @Query("SELECT * FROM lesson WHERE id LIKE :uid0")
@@ -34,7 +35,7 @@ interface DyuAndroDao {
     @Delete
     suspend fun delete(item: Task)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(item: Task)
 
     @Insert
@@ -45,4 +46,19 @@ interface DyuAndroDao {
 
     @get:Query("SELECT * FROM user WHERE id = 1")
     val user: User
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(item: Theory)
+
+    @Query("SELECT * FROM Theory WHERE id LIKE :uid2")
+    suspend fun getTheory(uid2: Int): Theory
+
+    @get:Query("SELECT * FROM Theory")
+    val allTheories: List<Theory>
+
+    @Delete
+    suspend fun delete(item: Theory)
+
+    @Update
+    suspend fun update(task: Theory)
 }

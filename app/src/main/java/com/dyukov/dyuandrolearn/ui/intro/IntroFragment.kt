@@ -8,9 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.dyukov.dyuandrolearn.R
 import com.dyukov.dyuandrolearn.base.BaseFragment
-import com.dyukov.dyuandrolearn.data.network.LessonModel
-import com.dyukov.dyuandrolearn.data.network.TaskModel
-import com.dyukov.dyuandrolearn.data.network.UserModel
+import com.dyukov.dyuandrolearn.data.network.*
 import com.dyukov.dyuandrolearn.databinding.FragmentIntroBinding
 import com.dyukov.dyuandrolearn.ui.MainActivity
 import com.dyukov.dyuandrolearn.ui.intro.adapter.FragmentsPagerAdapter
@@ -24,6 +22,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
+import timber.log.Timber
+import java.util.concurrent.TimeUnit
+import kotlin.system.measureTimeMillis
 
 class IntroFragment : BaseFragment<IntroViewModel, FragmentIntroBinding, IntroViewModelFactory>() {
 
@@ -107,8 +108,8 @@ class IntroFragment : BaseFragment<IntroViewModel, FragmentIntroBinding, IntroVi
                 override fun onPageSelected(position: Int) {
                     viewModel.currentPosition = position
                     if (position == 2)
-                        bt_next.text = "Go"
-                    else bt_next.text = "Next"
+                        bt_next.text = "Почати"
+                    else bt_next.text = "Далі"
                 }
 
                 override fun onPageScrollStateChanged(state: Int) {
@@ -119,7 +120,7 @@ class IntroFragment : BaseFragment<IntroViewModel, FragmentIntroBinding, IntroVi
 
     }
 
-    fun getUserData() {
+    private fun getUserData() {
         GlobalScope.launch(Dispatchers.Main) {
             mAuth.currentUser?.let {
                 mDatabaseReference?.child(it.uid)
@@ -141,28 +142,24 @@ class IntroFragment : BaseFragment<IntroViewModel, FragmentIntroBinding, IntroVi
 
     private fun getLessons() {
         if (preferenceStorage?.getDataLoaded() == false) {
-            val databaseReference = FirebaseDatabase.getInstance().getReference("lessons")
+            val databaseReference = FirebaseDatabase.getInstance()
+                .getReferenceFromUrl("https://dyuandrolearn.firebaseio.com/")
             databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {
                 }
 
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val lessons = ArrayList<LessonModel>()
-                    val tasks = ArrayList<TaskModel>()
-                    for (lessonSnapshot in dataSnapshot.children) {
-                        val lessonModel =
-                            lessonSnapshot.getValue(LessonModel::class.java)
-                        lessonModel?.let {
-                            lessons.add(lessonModel)
-                            lessonModel.tasks?.let { list -> tasks.addAll(list) }
-                        }
-                        preferenceStorage?.setIsDataLoaded(true)
+
+                    val dataModel =
+                        dataSnapshot.getValue(DyuData::class.java)
+                    dataModel?.let {
+                        viewModel.toDbLessons(dataModel)
                     }
-                    viewModel.toDbLessons(lessons, tasks)
+                    preferenceStorage?.setIsDataLoaded(true)
+
                 }
             })
 
         }
     }
-
 }

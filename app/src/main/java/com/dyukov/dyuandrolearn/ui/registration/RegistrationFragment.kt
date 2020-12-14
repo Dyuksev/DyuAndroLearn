@@ -28,10 +28,9 @@ class RegistrationFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-
     }
 
-    fun initView() {
+    private fun initView() {
         bt_sign_up.setOnClickListener {
             createUser()
             Utils.hideKeyboard(it)
@@ -43,7 +42,7 @@ class RegistrationFragment :
         }
     }
 
-    fun createUser() {
+    private fun createUser() {
         showProgress()
         val email = viewModel.etEmail.value.toString()
         val password = viewModel.etPassword.value.toString()
@@ -65,15 +64,15 @@ class RegistrationFragment :
         }
     }
 
-    fun saveDataIntoFirebaseDatabase(uId: String, username: String, email: String) {
+    private fun saveDataIntoFirebaseDatabase(uId: String, username: String, email: String) {
         val userModel = UserModel()
         userModel.email = email
-        userModel.username = username
+        userModel.name = username
         userModel.level = 1
         userModel.progress = 0
         mDatabaseReference?.child(uId)?.setValue(userModel)
         hideProgress()
-        Toast.makeText(context, "Successfully Registered", Toast.LENGTH_LONG)
+        Toast.makeText(context, "Реєстрація успішна!", Toast.LENGTH_LONG)
             .show()
         requireActivity().onBackPressed()
     }

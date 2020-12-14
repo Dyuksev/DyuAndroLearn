@@ -11,8 +11,7 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_login_to_registration"
-            app:destination="@+id/registration_fragment"
-            />
+            app:destination="@+id/registration_fragment" />
 
         <action
             android:id="@+id/action_login_to_intro_screen"
@@ -54,9 +53,15 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_home_to_learn"
-            app:destination="@+id/learn_fragment"
-            app:popUpTo="@+id/nav_graph"
-            app:popUpToInclusive="true" />
+            app:destination="@+id/learn_fragment" />
+
+        <action
+            android:id="@+id/action_home_to_lessonDialog"
+            app:destination="@+id/lessonDetailDialogFragment" />
+
+        <action
+            android:id="@+id/action_home_to_quizFragment"
+            app:destination="@+id/quizFragment" />
     </fragment>
 
 
@@ -82,16 +87,84 @@
             app:destination="@+id/login_fragment"
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true" />
+
     </fragment>
 
     <fragment
         android:id="@+id/detail_lesson_fragment"
         android:name="com.dyukov.dyuandrolearn.ui.lessonDetail.LessonDetailFragment"
         android:label="DetailLesson"
-        tools:layout="@layout/fragment_lesson_detail" />
+        tools:layout="@layout/fragment_lesson_detail">
+
+        <action
+            android:id="@+id/action_profile_to_quizStart"
+            app:destination="@+id/quizStartFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/tast_detail_fragment"
-        android:name="com.dyukov.dyuandrolearn.ui.taskDetail.TaskDetailFragment"
+        android:name="com.dyukov.dyuandrolearn.ui.taskDetail.TheoryFragment"
         android:label="TaskDetail"
-        tools:layout="@layout/fragment_task_detail" />
+        tools:layout="@layout/fragment_task_detail">
+        <action
+            android:id="@+id/action_taskDetail_to_quizExerciseFragment"
+            app:destination="@+id/quizExerciseFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/quizStartFragment"
+        android:name="com.dyukov.dyuandrolearn.ui.quiz.quizStart.QuizFragment"
+        android:label="QuizStartFragment"
+        tools:layout="@layout/fragment_quiz_start">
+        <argument
+            android:name="task"
+            app:argType="com.dyukov.dyuandrolearn.data.db.model.Task" />
+        <action
+            android:id="@+id/action_profile_to_quizExerciseFragment"
+            app:destination="@+id/quizExerciseFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/quizExerciseFragment"
+        android:name="com.dyukov.dyuandrolearn.ui.quiz.quizExercise.QuizExerciseFragment"
+        android:label="QuizExerciseFragment"
+        tools:layout="@layout/fragment_quiz">
+        <argument
+            android:name="task"
+            app:argType="com.dyukov.dyuandrolearn.data.db.model.Task" />
+        <argument
+            android:name="theoryId"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.dyukov.dyuandrolearn.ui.quiz.quizStart.QuizFragment"
+        android:label="QuizFragment"
+        tools:layout="@layout/fragment_quiz_start">
+        <argument
+            android:name="task"
+            app:argType="com.dyukov.dyuandrolearn.data.db.model.Task" />
+        <argument
+            android:name="theoryId"
+            app:argType="integer" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/lessonDetailDialogFragment"
+        android:name="com.dyukov.dyuandrolearn.ui.dialogLessonDetail.LessonDetailDialogFragment"
+        android:label="LessonDetailDialogFragment"
+        tools:layout="@layout/dialog_lesson_detail">
+        <argument
+            android:name="lesson"
+            app:argType="com.dyukov.dyuandrolearn.data.db.model.Lesson" />
+
+        <argument
+            android:name="tasks"
+            app:argType="com.dyukov.dyuandrolearn.data.db.model.Task[]" />
+
+        <action
+            android:id="@+id/action_lessonDetailDialogFragment_to_quizExerciseFragment"
+            app:destination="@+id/quizExerciseFragment" />
+    </dialog>
 </navigation>

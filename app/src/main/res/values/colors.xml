@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#879BCF</color>
-    <color name="colorPrimaryDark">#697eb0</color>
+    <color name="colorPrimary">#028BEE</color>
+    <color name="colorPrimaryDark">#028BEE</color>
     <color name="colorAccent">#D15641</color>
+    <color name="colorAccents">#79B2DC</color>
 
     <color name="white">#FFFFFF</color>
-    <color name="home_background">#F7F7F7</color>
+    <color name="home_background">#E1DEDE</color>
     <color name="black">#000000</color>
     <color name="black_transparent">#80000000</color>
+    <color name="transparent">#00000000</color>
     <color name="blackType2_20">#33000000</color>
     <color name="dark_blue">#3b5998</color>
     <color name="light_blue">#39adda</color>
@@ -22,6 +24,7 @@
     <color name="green2">#1E9E4B</color>
     <color name="green3">#2600854B</color>
     <color name="green4">#0A6D3C</color>
+    <color name="green5">#32DE84</color>
     <color name="blue">#65C7C3</color>
     <color name="blue_1">#4065C7C3</color>
     <color name="blue_2">#4367B2</color>
@@ -61,10 +64,12 @@
     <color name="line_color">#dddddd</color>
 
     <color name="black40">#66000000</color>
+    <color name="blackTrans">#44000000</color>
     <color name="white82">#D1FFFFFF</color>
     <color name="white75">#BFFFFFFF</color>
     <color name="white70">#B3FFFFFF</color>
     <color name="text_blueType1">#007AFF</color>
     <color name="green_button">#75CAC7</color>
     <color name="pin_normal">#6B767E</color>
+    <color name="shadow8_color">#14000000</color>
 </resources>

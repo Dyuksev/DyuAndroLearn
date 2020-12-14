@@ -11,11 +11,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dyukov.dyuandrolearn.R
 import com.dyukov.dyuandrolearn.data.db.model.Task
-import com.dyukov.dyuandrolearn.data.network.TaskModel
-import com.dyukov.dyuandrolearn.extensions.gone
-import com.dyukov.dyuandrolearn.extensions.visible
-import com.dyukov.dyuandrolearn.utils.Constants.TYPE_LESSON_BASIC
-import com.dyukov.dyuandrolearn.utils.Constants.TYPE_LESSON_INTRO
 
 class TaskLessonRvAdapter(private var context: Context) :
     RecyclerView.Adapter<TaskLessonRvAdapter.TaskViewHolder>() {
@@ -65,52 +60,54 @@ class TaskLessonRvAdapter(private var context: Context) :
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        val taskModel = tasks?.get(position)
-        when (taskModel?.type) {
-            TYPE_LESSON_INTRO -> {
-                holder.taskImage.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        context,
-                        R.drawable.ic_taks_introduction
-                    )
-                )
-            }
-            TYPE_LESSON_BASIC -> {
-                holder.taskImage.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        context,
-                        R.drawable.ic_task_android
-                    )
-                )
-            }
-        }
-        if (taskModel?.done == true) {
-            holder.cl.setBackgroundResource(R.drawable.ic_tast_green)
-            holder.ivExperience.visible()
-            holder.tvExpCount.visible()
-            holder.tvExpCount.text = taskModel.points.toString()
-            holder.ivExperience.setImageDrawable(
-                ContextCompat.getDrawable(
-                    context,
-                    R.drawable.ic_experience_green_back
-                )
-            )
-
-        } else {
-            holder.cl.setBackgroundResource(R.drawable.ic_tast_grey)
-            holder.ivExperience.visible()
-            holder.tvExpCount.visible()
-            holder.tvExpCount.text = taskModel?.points.toString()
-            holder.ivExperience.setImageDrawable(
-                ContextCompat.getDrawable(
-                    context,
-                    R.drawable.ic_experience_back
-                )
-            )
-        }
-        holder.taskName.text = taskModel?.name
-        holder.cl.setOnClickListener {
-            onClickListener?.onItemClick(position, taskModel!!)
-        }
+//        val taskModel = tasks?.get(position)
+//        when (taskModel?.type) {
+//            TYPE_TASK_PART_LESSON -> {
+//                holder.taskImage.setImageDrawable(
+//                    ContextCompat.getDrawable(
+//                        context,
+//                        R.drawable.ic_task_android
+//                    )
+//                )
+//                holder.taskName.text = taskModel.theoryData?.name
+//
+//            }
+//            TYPE_TASK_PRACTICE -> {
+//                holder.taskImage.setImageDrawable(
+//                    ContextCompat.getDrawable(
+//                        context,
+//                        R.drawable.ic_quiz
+//                    )
+//                )
+//                holder.taskName.text = "Тест"
+//            }
+//        }
+//        if (taskModel?.done == true) {
+//            holder.cl.setBackgroundResource(R.drawable.ic_tast_green)
+//            holder.ivExperience.visible()
+//            holder.tvExpCount.visible()
+//            holder.tvExpCount.text = taskModel.points.toString()
+//            holder.ivExperience.setImageDrawable(
+//                ContextCompat.getDrawable(
+//                    context,
+//                    R.drawable.ic_experience_green_back
+//                )
+//            )
+//
+//        } else {
+//            holder.cl.setBackgroundResource(R.drawable.ic_tast_grey)
+//            holder.ivExperience.visible()
+//            holder.tvExpCount.visible()
+//            holder.tvExpCount.text = taskModel?.points.toString()
+//            holder.ivExperience.setImageDrawable(
+//                ContextCompat.getDrawable(
+//                    context,
+//                    R.drawable.ic_experience_back
+//                )
+//            )
+//        }
+//        holder.cl.setOnClickListener {
+//            onClickListener?.onItemClick(position, taskModel!!)
+//        }
     }
 }

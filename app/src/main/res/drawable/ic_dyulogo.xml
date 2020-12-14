@@ -8,10 +8,10 @@
       android:fillColor="#D15641"/>
   <path
       android:pathData="M35.2942,35.2941h14.7059v14.7059h-14.7059z"
-      android:fillColor="#879BCF"/>
+      android:fillColor="#ffffff"/>
   <path
       android:pathData="M17.647,35.2941h14.7059v14.7059h-14.7059z"
-      android:fillColor="#879BCF"/>
+      android:fillColor="#ffffff"/>
   <path
       android:pathData="M17.2793,17.6471h14.7059v14.7059h-14.7059z"
       android:fillColor="#D15641"/>
@@ -20,5 +20,5 @@
       android:fillColor="#D15641"/>
   <path
       android:pathData="M35.2942,17.6471h14.7059v14.7059h-14.7059z"
-      android:fillColor="#879BCF"/>
+      android:fillColor="#ffffff"/>
 </vector>

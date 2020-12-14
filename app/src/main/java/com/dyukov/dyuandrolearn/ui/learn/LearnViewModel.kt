@@ -6,6 +6,7 @@ import com.dyukov.dyuandrolearn.base.BaseViewModel
 import com.dyukov.dyuandrolearn.data.db.Repository
 import com.dyukov.dyuandrolearn.data.db.model.Lesson
 import com.dyukov.dyuandrolearn.data.db.model.Task
+import com.dyukov.dyuandrolearn.data.db.model.Theory
 import com.dyukov.dyuandrolearn.data.db.model.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -14,37 +15,23 @@ import kotlinx.coroutines.withContext
 
 class LearnViewModel(private val repository: Repository) : BaseViewModel() {
 
-    val taskFromDb = MutableLiveData<List<Task>>()
-    val lessonsFromDb = MutableLiveData<List<Lesson>>()
+
+    val theories = MutableLiveData<List<Theory>>()
     var user = MutableLiveData<User>()
     val points = Transformations.map(user) {
         user.value?.level.toString()
     }
 
-    fun getLessons() {
-        GlobalScope.launch(Dispatchers.IO) {
-            val list: ArrayList<Lesson> = ArrayList<Lesson>()
-            val tasks: ArrayList<Task> = ArrayList<Task>()
-            for (lesson in repository.getAllLessons()) {
-                list.add(lesson)
-            }
-            lessonsFromDb.postValue(list)
 
-            for (lesson in list) {
-                for (task in lesson.tasks) {
-                    tasks.add(repository.getTasksFromLesson(task))
-                }
-            }
-            taskFromDb.postValue(tasks)
-        }
-    }
-
-    fun getUserModel() {
+    fun getTheories() {
         GlobalScope.launch(Dispatchers.IO) {
-            val userDb = repository.getUserData()
-            withContext(Dispatchers.Main) {
-                user.value = userDb
+            val user = repository.getUserData()
+            val doneTheoryList = user.doneTheoriesId.orEmpty()
+            val theoryList: ArrayList<Theory> = ArrayList<Theory>()
+            for (theory in repository.getAllTheories()) {
+                theoryList.add(theory)
             }
+            theories.postValue(theoryList.filter { it.id in doneTheoryList })
         }
     }
 }

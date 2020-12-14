@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:autoTransition="animateToEnd"
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000"
+        motion:motionInterpolator="linear">
+        <KeyFrameSet>
+
+
+            <KeyAttribute
+                android:scaleX="50"
+                android:scaleY="50"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/tv_logo" />
+
+            <KeyAttribute
+                android:translationX="-1120dp"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/iv_logo" />
+            <KeyAttribute
+                android:scaleX="1"
+                android:scaleY="1"
+                motion:framePosition="50"
+                motion:motionTarget="@+id/tv_logo" />
+
+            <KeyAttribute
+                android:translationX="-50dp"
+                motion:framePosition="50"
+                motion:motionTarget="@+id/iv_logo" />
+
+
+        </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start" />
+
+    <ConstraintSet android:id="@+id/end" />
+</MotionScene>

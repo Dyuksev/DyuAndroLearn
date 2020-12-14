@@ -6,8 +6,10 @@ import com.dyukov.dyuandrolearn.ui.intro.IntroViewModelFactory
 import com.dyukov.dyuandrolearn.ui.learn.LearnViewModelFactory
 import com.dyukov.dyuandrolearn.ui.lessonDetail.LessonDetailViewModelFactory
 import com.dyukov.dyuandrolearn.ui.login.LoginViewModelFactory
+import com.dyukov.dyuandrolearn.ui.quiz.quizExercise.QuizExerciseViewModelFactory
+import com.dyukov.dyuandrolearn.ui.quiz.quizStart.QuizViewModelFactory
 import com.dyukov.dyuandrolearn.ui.registration.RegistrationViewModelFactory
-import com.dyukov.dyuandrolearn.ui.taskDetail.TaskDetailViewModelFactory
+import com.dyukov.dyuandrolearn.ui.taskDetail.TheoryViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
@@ -20,7 +22,9 @@ val appModule = Kodein.Module(APP_MODULE_NAME, false) {
     bind() from provider { RegistrationViewModelFactory() }
     bind() from provider { IntroViewModelFactory(instance()) }
     bind() from provider { LearnViewModelFactory(instance()) }
-    bind() from provider { TaskDetailViewModelFactory(instance()) }
+    bind() from provider { TheoryViewModelFactory(instance()) }
     bind() from provider { LessonDetailViewModelFactory(instance()) }
     bind() from provider { HomeViewModelFactory(instance()) }
+    bind() from provider { QuizExerciseViewModelFactory(instance()) }
+    bind() from provider { QuizViewModelFactory(instance()) }
 }

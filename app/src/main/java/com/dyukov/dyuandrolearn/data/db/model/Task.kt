@@ -1,23 +1,27 @@
 package com.dyukov.dyuandrolearn.data.db.model
 
-import androidx.room.ColumnInfo
+
+import android.os.Parcelable
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-@Entity(tableName = "task")
+@Parcelize
+@Entity
 data class Task(
-    @ColumnInfo(name = "name")
-    var name: String,
-    @ColumnInfo(name = "composition")
-    var composition: String,
-    @ColumnInfo(name = "points")
-    var points: Int,
-    @ColumnInfo(name = "type")
-    var type: Int,
-    @ColumnInfo(name = "done")
-    var done: Boolean,
-    @ColumnInfo(name = "suggested")
-    var suggested: Boolean,
+    @SerializedName("id")
     @PrimaryKey(autoGenerate = true)
-    var id: Int? = null
-)
+    var id: Int? = null,
+    @SerializedName("data")
+    var data: ArrayList<PracticeData>? = null,
+    @SerializedName("theoryId")
+    var theoryId: Int? = null,
+    @SerializedName("points")
+    var points: Int? = null,
+    @SerializedName("isPrimary")
+    var isPrimary: Boolean? = null,
+    @SerializedName("done")
+    var done: Boolean? = null
+) : Parcelable

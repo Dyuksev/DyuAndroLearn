@@ -1,8 +1,10 @@
 package com.dyukov.dyuandrolearn.data.network
 
-class UserModel {
-    var email: String = ""
-    var username: String = ""
-    var level: Int = 0
-    var progress: Int =0
-}
+data class UserModel(
+    var email: String = "",
+    var name: String = "",
+    var level: Int = 0,
+    var progress: Int = 0,
+    var doneLessonsId: ArrayList<Int> = arrayListOf(),
+    var doneTheoryId: ArrayList<Int> = arrayListOf()
+)

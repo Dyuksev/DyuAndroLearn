@@ -65,4 +65,8 @@ abstract class BaseFragment<V : BaseViewModel, B : ViewDataBinding, T : ViewMode
     fun hideProgress() {
         (activity as MainActivity).hideProgress()
     }
+
+    open fun onBackPressed(): Boolean {
+        return false
+    }
 }

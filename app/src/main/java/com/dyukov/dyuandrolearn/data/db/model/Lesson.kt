@@ -1,24 +1,30 @@
 package com.dyukov.dyuandrolearn.data.db.model
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.IgnoredOnParcel
+import kotlinx.android.parcel.Parcelize
 import java.util.ArrayList
 
-@Entity(tableName = "lesson")
+@Parcelize
+@Entity
 data class Lesson(
-    @ColumnInfo(name = "item_name")
-    var name: String,
-    @ColumnInfo(name = "description")
-    var description: String,
-    @ColumnInfo(name = "tasks")
-    var tasks: ArrayList<Int>,
-    @ColumnInfo(name = "points")
-    var points: Int,
-    @ColumnInfo(name = "type")
-    var type: Int,
-    @ColumnInfo(name = "done")
-    var done: Boolean,
+    @SerializedName("id")
     @PrimaryKey(autoGenerate = true)
-    var id: Int? = null
-)
+    var id: Int? = null,
+    @SerializedName("name")
+    var name: String?,
+    @SerializedName("type")
+    var type: Int?,
+    @SerializedName("theoryId")
+    var theoryId: Int?,
+    @SerializedName("tasksId")
+    var tasksId: ArrayList<Int>?,
+    @SerializedName("points")
+    var points: Int?,
+    var isShowForUser: Boolean? = false
+    ) : Parcelable

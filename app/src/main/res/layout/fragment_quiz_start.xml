@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.dyukov.dyuandrolearn.ui.quiz.quizStart.QuizViewModel" />
+
+        <import
+            alias="textOptions"
+            type="com.dyukov.dyuandrolearn.utils.TextOptions" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_code_back"
+        android:fitsSystemWindows="true">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha="0.9"
+            android:background="@{viewModel.isShowScore() ? @color/black : @color/white}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/white" />
+
+
+
+        <Button
+            android:id="@+id/bt_next"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:alpha="1"
+            android:background="#126CFA"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Далі"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_quiz_type_1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibility="@{viewModel.currentExercise.type == 1 &amp;&amp; !viewModel.isShowScore()  &amp;&amp; !viewModel.isFailed()}">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.3" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <TextView
+                android:id="@+id/bt_answer_1"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="12dp"
+                android:alpha="1"
+                android:background="@drawable/ripple_bg_rect_red"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:onClick="@{()-> viewModel.onClickAnswer(1)}"
+                android:paddingStart="8dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="12dp"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@id/barrier"
+                app:layout_constraintEnd_toStartOf="@id/gl_vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:setText="@{viewModel.currentExercise.answers.get(0).text}"
+                app:textOptions="@{textOptions.INSTANCE.quizTextOptions}"
+                tools:text="Operating System" />
+
+            <TextView
+                android:id="@+id/bt_answer_2"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="24dp"
+                android:alpha="1"
+                android:background="@drawable/ripple_bg_rect_yellow"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:onClick="@{()-> viewModel.onClickAnswer(2)}"
+                android:paddingStart="8dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="12dp"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@id/barrier"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@id/gl_vertical"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:setText="@{viewModel.currentExercise.answers.get(1).text}"
+                app:textOptions="@{textOptions.INSTANCE.quizTextOptions}"
+                tools:text="how dare" />
+
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="bt_answer_1,bt_answer_2" />
+
+            <TextView
+                android:id="@+id/bt_answer_3"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="12dp"
+                android:alpha="1"
+                android:background="@drawable/ripple_bg_rect_green"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:onClick="@{()-> viewModel.onClickAnswer(3)}"
+                android:paddingStart="8dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="12dp"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@id/gl_vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/barrier"
+                app:visibility="@{viewModel.currentExercise.answers.size() > 2}"
+                tools:text="how dare" />
+
+            <TextView
+                android:id="@+id/bt_answer_4"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="24dp"
+                android:alpha="1"
+                android:background="@drawable/ripple_bg_rect_blue"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:onClick="@{()-> viewModel.onClickAnswer(4)}"
+                android:paddingStart="8dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="12dp"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@id/gl_vertical"
+                app:layout_constraintTop_toBottomOf="@+id/barrier"
+                app:visibility="@{viewModel.currentExercise.answers.size() > 2}"
+                tools:text="how dare" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_quiz_type_2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibility="@{viewModel.currentExercise.type == 2 &amp;&amp; !viewModel.isShowScore() &amp;&amp; !viewModel.isFailed()}">
+
+            <TextView
+                android:id="@+id/tv_question_type_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.2" />
+
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/bg_rect_stroke_rounded"
+                android:fontFamily="@font/roboto_medium"
+                android:hint="ваша відповідь"
+                android:minHeight="50dp"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:text="@={viewModel.text}"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_question_type_2"
+                app:layout_constraintVertical_bias="0.3" />
+
+            <TextView
+                android:id="@+id/tv_right_answer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="Правильна відповідь"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editText" />
+
+
+            <Button
+                android:id="@+id/bt_check"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="#126CFA"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Підтвердити"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText"
+                app:layout_constraintVertical_bias="1" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_quiz_type_3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibility="@{viewModel.currentExercise.type == 3 &amp;&amp; !viewModel.isShowScore()  &amp;&amp; !viewModel.isFailed()}"
+            tools:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_goal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.1"
+                tools:text="SUka" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_goal">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="24dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_code_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_rect_grey"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <CheckBox
+                            android:id="@+id/cb_1"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <io.github.kbiakov.codeview.CodeView
+                            android:id="@+id/cv_1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:codeText="@{viewModel.currentExercise.answers.get(0).text}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/cb_1"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_code_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_rect_grey"
+                        android:padding="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cl_code_1">
+
+                        <CheckBox
+                            android:id="@+id/cb_2"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <io.github.kbiakov.codeview.CodeView
+                            android:id="@+id/cv_2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:codeText="@{viewModel.currentExercise.answers.get(1).text}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/cb_2"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_code_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_rect_grey"
+                        android:padding="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cl_code_2">
+
+                        <CheckBox
+                            android:id="@+id/cb_3"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <io.github.kbiakov.codeview.CodeView
+                            android:id="@+id/cv_3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:codeText="@{viewModel.currentExercise.answers.get(2).text}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/cb_3"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_code_4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_rect_grey"
+                        android:padding="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cl_code_3">
+
+                        <CheckBox
+                            android:id="@+id/cb_4"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <io.github.kbiakov.codeview.CodeView
+                            android:id="@+id/cv_4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:codeText="@{viewModel.currentExercise.answers.get(3).text}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/cb_4"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibility="@{viewModel.isShowScore() &amp;&amp; !viewModel.isFailed()}">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_finish"
+                app:layout_constraintBottom_toTopOf="@+id/tv_score"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_score"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:text="Ваш рахунок:"
+                android:textColor="@color/white"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.3" />
+
+            <com.dinuscxj.progressbar.CircleProgressBar
+                android:id="@+id/line_progress"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="@dimen/default_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_score"
+                app:progress_end_color="@color/colorAccent"
+                app:progress_start_color="@color/colorPrimary"
+                app:progress_stroke_width="5dp"
+                app:progress_style="solid_line"
+                app:progress_text_size="46dp" />
+
+            <TextView
+                android:id="@+id/tv_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:text="@{viewModel.scorePercentStr}"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line_progress" />
+
+            <TextView
+                android:id="@+id/tv_earned"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:drawablePadding="4dp"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:text="@{viewModel.pointEarnedStr}"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp"
+                app:drawableEndCompat="@drawable/ic_star_black_red"
+                app:drawableStartCompat="@drawable/ic_star_black_red"
+                app:layout_constraintBottom_toTopOf="@+id/bt_finish"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_message"
+                app:layout_constraintVertical_bias="1" />
+
+            <Button
+                android:id="@+id/bt_finish"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:alpha="1"
+                android:background="@color/colorPrimary"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Завершити"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
+            android:id="@+id/pb_time_progress"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/iv_close"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:rcAnimationEnable="true"
+            app:rcAnimationSpeedScale="0.5"
+            app:rcBackgroundColor="#0A000000"
+            app:rcBackgroundPadding="2dp"
+            app:rcMax="120"
+            app:rcProgress="120"
+            app:rcProgressColor="@color/colorPrimary"
+            app:rcRadius="80dp"
+            app:rcSecondaryProgress="0"
+            app:rcSecondaryProgressColor="@color/colorAccents"
+            app:rcTextPositionPriority="outside"
+            app:rcTextProgressColor="@color/white"
+            app:rcTextProgressSize="16sp" />
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/ic_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:tint="@color/black"
+            tools:ignore="ContentDescription" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#ee000000"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibility="@{viewModel.isShowReadyFlow()}">
+
+
+            <TextView
+                android:id="@+id/tv_ready"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:text="@={viewModel.readyValue}"
+                android:textColor="@color/colorPrimary"
+                android:textSize="102sp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_res"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="52dp"
+            android:drawableEnd="@drawable/ic_star_half_green"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:text="+2"
+            android:textColor="@color/green5"
+            android:textSize="24sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

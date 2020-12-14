@@ -43,7 +43,7 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding, LoginVi
         }
         bt_sign_in.setOnClickListener {
             Utils.hideKeyboard(it)
-            SignIn()
+            signIn()
         }
         tv_forgot_pass.setOnClickListener {
             Utils.hideKeyboard(it)
@@ -52,7 +52,7 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding, LoginVi
 
     }
 
-    private fun SignIn() {
+    private fun signIn() {
         showProgress()
         GlobalScope.launch {
             mAuth.signInWithEmailAndPassword(
@@ -82,7 +82,7 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding, LoginVi
                 if (task.isSuccessful) {
                     Toast.makeText(
                         requireActivity(),
-                        "The password reset link was sent! ",
+                        "Посилання на скидання паролю було відправлено на пошту",
                         Toast.LENGTH_LONG
                     ).show()
                     hideProgress()
@@ -90,7 +90,7 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding, LoginVi
                     hideProgress()
                     Toast.makeText(
                         requireActivity(),
-                        "Unable to send reset mail",
+                        "Сталася помилка. Спробуйте ще раз.",
                         Toast.LENGTH_LONG
                     )
                         .show()
@@ -100,16 +100,16 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding, LoginVi
 
     private fun showResetPasswordDialog() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(activity)
-        builder.setTitle("Enter your email to receive a password reset link")
+        builder.setTitle("Введіть пошту, якою ви реєструвалися")
         val input = EditText(activity)
         input.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
         builder.setView(input)
 
-        builder.setPositiveButton("Reset password",
+        builder.setPositiveButton("Скинути пароль",
             DialogInterface.OnClickListener { dialog, which ->
                 sendPasswordResetToEmail(input.text.toString())
             })
-        builder.setNegativeButton("Cancel",
+        builder.setNegativeButton("Скасувати",
             DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
         builder.show()
     }
